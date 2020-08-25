@@ -2,7 +2,9 @@ import styled from 'styled-components'
 import tw from 'twin.macro'
 
 export const StyledListItem = styled.div`
-  ${tw`flex items-center border-t-0 border-l-0 border-r-0 border-b border-gray-300 border-solid py-4 px-4`}
+  ${props => props.size === "half" ? tw`w-1/2` : tw``}
+
+  ${tw`flex items-center border-t-0 border-l-0 border-r-0 border-b border-gray-300 border-solid py-4 px-10`}
 `;
 
 export const StyledImage = styled.div`

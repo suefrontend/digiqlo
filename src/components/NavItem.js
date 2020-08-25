@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { StyledNav, StyledUl, StyledLi, StyledLink, StyledNavWrapper } from '../styles/StyledNavItem';
 import { StyledHeader, StyledHeaderLink } from '../styles/StyledHeader';
-import StyledButton from '../styles/StyledButton';
+import { StyledButton } from '../styles/StyledButton';
 
 const NavItem = () => (
 	<StyledNav>
@@ -10,10 +10,12 @@ const NavItem = () => (
 			<StyledHeaderLink>DIGIQLO</StyledHeaderLink>
 		</StyledHeader>
 		<StyledNavWrapper>
-			<StyledButton>
-				<svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd"></path></svg>
-				<Link to="/additem">Add Item</Link>
+			<Link to="/additem">
+				<StyledButton>
+					<svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd"></path></svg>
+				Add Item
 			</StyledButton>
+			</Link>
 		</StyledNavWrapper>
 		<StyledUl>
 			<StyledLi>

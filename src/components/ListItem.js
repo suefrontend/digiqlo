@@ -1,9 +1,25 @@
 import React from 'react';
 import { StyledContainerMain } from '../styles/StyledContainer';
 import { StyledListItem, StyledImage, StyledTitle, StyledIcons } from '../styles/StyledListItem';
+import { SVGContainer, StyledSelect, StyledSelectContainer } from '../styles/StyledInput'
 
 const ListItem = () => (
   <StyledContainerMain>
+
+    <StyledSelectContainer>
+      <select>
+        <option>Indiana</option>
+        <option>Michigan</option>
+        <option>Ohio</option>
+      </select>
+      <SVGContainer>
+        <svg class="" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+          <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"></path>
+        </svg>
+      </SVGContainer>
+    </StyledSelectContainer>
+    Color, Season, Category, Year, Price, Quantity, Sleeve, Favorite
+
     <StyledListItem>
       <StyledImage><img src="https://5.imimg.com/data5/HM/AE/VV/SELLER-77211399/white-plain-tshirts-500x500.jpg" alt="stew" class="" /></StyledImage>
       {/* <StyledImage></StyledImage> */}

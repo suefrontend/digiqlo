@@ -3,6 +3,12 @@ import tw from 'twin.macro'
 
 export const StyledNav = styled.nav`
   ${tw``}  
+
+  & {
+    a {
+      ${tw`no-underline`}
+    }
+  }
 `;
 
 export const StyledNavWrapper = styled.div`
@@ -18,7 +24,7 @@ export const StyledLi = styled.li`
 
   & {
     a {
-      ${tw`flex py-5  cursor-pointer no-underline text-current`};
+      ${tw`flex py-5  cursor-pointer no-underline text-current block`};
     }
     svg {
       ${tw`w-5 mr-4 fill-current`};

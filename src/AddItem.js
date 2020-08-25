@@ -2,7 +2,6 @@ import React from 'react';
 import { Form, FormItemFull, FormItemHalf, Span, FormItem, FormItemContainer } from "./styles/StyledForm"
 import { StyledHeadingH2 } from './styles/StyledHeading'
 import { StyledContainerMain } from './styles/StyledContainer';
-import StyledButton from './styles/StyledButton'
 
 const AddItem = () => (
   <>
