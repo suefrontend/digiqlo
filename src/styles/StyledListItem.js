@@ -5,6 +5,12 @@ export const StyledListItem = styled.div`
   ${props => props.size === "half" ? tw`w-1/2` : tw``}
 
   ${tw`flex items-center border-t-0 border-l-0 border-r-0 border-b border-gray-300 border-solid py-4 px-10`}
+
+  & {
+    a {
+      ${tw`text-current`}
+    }
+  }
 `;
 
 export const StyledImage = styled.div`
@@ -32,7 +38,7 @@ export const StyledIcons = styled.div`
 
   & {
     svg {
-      ${tw`w-4 fill-current ml-3 cursor-pointer`};
+      ${tw`w-4 fill-current ml-3 cursor-pointer opacity-75`};
     }
 
     button {

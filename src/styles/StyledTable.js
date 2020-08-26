@@ -2,7 +2,12 @@ import styled from 'styled-components'
 import tw from 'twin.macro'
 
 export const StyledTable = styled.table`
-  ${tw`w-full border-collapse box-border mb-2 mt-6`}
+
+${props => props.size === "half" ? tw`text-green-400` : tw`w-full`}
+
+}}
+
+  ${tw`border-collapse box-border mb-2 mt-6`}
 
     & {
       tr {
@@ -54,7 +59,7 @@ export const StyledTableWhishlist = styled.table`
       }
 
       td {
-        ${tw`border-t-0 border-l-0 border-r-0 border-b border-gray-300 border-solid`}
+        ${tw`border-t-0 border-l-0 border-r-0 border-b border-gray-300 border-solid py-2`}
       }
       th:first-of-type,
       td:first-of-type {
@@ -74,3 +79,27 @@ export const StyledTableWhishlist = styled.table`
       }
     }
 `;
+
+export const StyledDetailTable = styled.table.attrs({
+  className: "border-collapse w-full",
+})`${tw`border-collapse w-full`}
+
+  & {
+    th:first-of-type,
+    td:first-of-type {
+      ${tw`w-20`}
+    }
+    th,td {
+      ${tw`py-4 px-4`}
+    }
+    tr:nth-child(2n) td {
+      ${tw`bg-gray-100`}
+    }
+    th,td {
+      ${tw`border-b border-l border-r border-t border-gray-300 border-solid`}
+    }
+  }
+
+
+
+`

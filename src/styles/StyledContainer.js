@@ -22,3 +22,46 @@ export const StyledContainerMain = styled.div`
 export const StyledFlexContainer = styled.div`
   ${tw`flex justify-between px-24`}
 `;
+
+export const StyledFlexContainerHalf = styled.div`
+${tw`flex justify-between px-24`}
+
+
+`;
+
+export const StyledContainerNoBg = styled.div`
+  ${tw`flex px-12 pt-10 pb-8`}
+
+  & {
+    div:first-of-type {
+      ${tw`w-1/3`}
+    }
+    div:last-of-type {
+      ${tw`ml-12 w-2/3`}
+    }    
+    img {
+      ${tw`w-full object-cover border border-solid border-gray-300`}
+    }
+    h2 {
+      ${tw`mt-0 pt-0`}
+    }
+  }
+`;
+
+export const StyledFlex = styled.div`
+  ${tw`px-4 py-6 flex items-center`}
+
+  & {
+    span {
+      ${tw`mr-2`}
+    }
+  }
+`;
+
+export const StyledClosetContainer = styled.div`
+  ${tw`grid grid-cols-5 gap-4`}
+`;
+
+export const Flex = styled.div`
+  ${tw`flex items-center justify-between my-6`}
+`;

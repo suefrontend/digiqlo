@@ -1,30 +1,41 @@
 import React from 'react';
-import { StyledContainerMain } from '../styles/StyledContainer';
+import { Link } from 'react-router-dom';
+import { StyledFlex, StyledContainerMain } from '../styles/StyledContainer';
 import { StyledListItem, StyledImage, StyledTitle, StyledIcons } from '../styles/StyledListItem';
 import { SVGContainer, StyledSelect, StyledSelectContainer } from '../styles/StyledInput'
 
-const ListItem = () => (
+const ListItem = ({ id = 1 }) => (
+
   <StyledContainerMain>
 
-    <StyledSelectContainer>
-      <select>
-        <option>Indiana</option>
-        <option>Michigan</option>
-        <option>Ohio</option>
-      </select>
-      <SVGContainer>
-        <svg class="" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-          <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"></path>
-        </svg>
-      </SVGContainer>
-    </StyledSelectContainer>
-    Color, Season, Category, Year, Price, Quantity, Sleeve, Favorite
+    <StyledFlex>
+      {/* <span>Filter by:</span> */}
+
+      <StyledSelectContainer>
+        <select>
+          <option>Jacket</option>
+          <option>Outerwear</option>
+          <option>Bottoms</option>
+          <option>Tops</option>
+          <option>Skirt</option>
+          <option>Shirt</option>
+          <option>Shoes</option>
+          <option>Tanks</option>
+        </select>
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+            <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"></path>
+          </svg>
+        </div>
+      </StyledSelectContainer>
+
+    </StyledFlex>
 
     <StyledListItem>
-      <StyledImage><img src="https://5.imimg.com/data5/HM/AE/VV/SELLER-77211399/white-plain-tshirts-500x500.jpg" alt="stew" class="" /></StyledImage>
+      <StyledImage><img src="https://ae01.alicdn.com/kf/HTB1BQPcEkCWBuNjy0Faq6xUlXXab.jpg_q50.jpg" alt="stew" class="" /></StyledImage>
       {/* <StyledImage></StyledImage> */}
-      <StyledTitle>T-Shirt [summer]
-      <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+      <StyledTitle><Link to={`/closet/${id}`}>T-Shirt [summer]</Link>
+        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
           <path d="M32 12.408l-11.056-1.607-4.944-10.018-4.944 10.018-11.056 1.607 8 7.798-1.889 11.011 9.889-5.199 9.889 5.199-1.889-11.011 8-7.798zM16 23.547l-6.983 3.671 1.334-7.776-5.65-5.507 7.808-1.134 3.492-7.075 3.492 7.075 7.807 1.134-5.65 5.507 1.334 7.776-6.983-3.671z"></path>
         </svg>
       </StyledTitle>
@@ -36,10 +47,10 @@ const ListItem = () => (
       </StyledIcons>
     </StyledListItem>
     <StyledListItem>
-      <StyledImage><img src="https://5.imimg.com/data5/HM/AE/VV/SELLER-77211399/white-plain-tshirts-500x500.jpg" alt="stew" class="" /></StyledImage>
+      <StyledImage><img src="https://ae01.alicdn.com/kf/HTB1BQPcEkCWBuNjy0Faq6xUlXXab.jpg_q50.jpg" alt="stew" class="" /></StyledImage>
       {/* <StyledImage></StyledImage> */}
-      <StyledTitle>T-Shirt [summer]
-      <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+      <StyledTitle><Link to={`/closet/${id}`}>T-Shirt [summer]</Link>
+        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
           <path d="M32 12.408l-11.056-1.607-4.944-10.018-4.944 10.018-11.056 1.607 8 7.798-1.889 11.011 9.889-5.199 9.889 5.199-1.889-11.011 8-7.798zM16 23.547l-6.983 3.671 1.334-7.776-5.65-5.507 7.808-1.134 3.492-7.075 3.492 7.075 7.807 1.134-5.65 5.507 1.334 7.776-6.983-3.671z"></path>
         </svg>
       </StyledTitle>
