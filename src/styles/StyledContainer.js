@@ -65,3 +65,33 @@ export const StyledClosetContainer = styled.div`
 export const Flex = styled.div`
   ${tw`flex items-center justify-between my-6`}
 `;
+export const FlexWrapper = styled.div`
+  ${tw`box-border flex flex-wrap -mx-2`}
+`;
+
+export const FlexInner = styled.div`
+  ${tw`box-border w-1/2 px-2 mb-4`}
+`;
+
+export const FlexItem = styled.div`
+  ${tw`box-border px-4 py-4 bg-white shadow-md rounded`}
+`;
+
+export const StyledContainerMiniWrapper = styled.div`
+
+  ${tw`box-border flex flex-wrap -mx-2 mb-6`}
+
+
+}
+`
+export const StyledContainerMini = styled.div`
+
+${tw`box-border mb-4 w-1/4 px-2`}
+& {
+  div {
+    ${tw`box-border bg-white shadow rounded py-4 pb-8`}
+
+  }
+}
+}
+`

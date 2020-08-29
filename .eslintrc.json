@@ -1,0 +1,16 @@
+{
+  "rules": {
+    "space-in-brackets": [
+      "error",
+      "always",
+      {
+        "singleValue": false,
+        "objectsInArrays": false,
+        "arraysInArrays": false,
+        "arraysInObjects": false,
+        "objectsInObjects": false,
+        "propertyName": false
+      }
+    ]
+  }
+}

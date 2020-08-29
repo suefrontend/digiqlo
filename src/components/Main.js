@@ -23,7 +23,8 @@ const Main = () => (
 			<Route exact path="/reports" component={Reports} />
 			<Route exact path="/organize" component={Organize} />
 			<Route exact path="/wishlist" component={Wishlist} />
-			<Redirect exact from="/closet/:id" to="/closet" />
+			<Route exact path="/wishlist/:id" component={Detail} />
+			<Redirect exact from="/" to="/closet" />
 		</Switch>
 	</StyledMain>
 );

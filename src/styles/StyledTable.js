@@ -45,6 +45,9 @@ export const StyledTableWhishlist = styled.table`
   ${tw`w-full border-collapse box-border mb-2 mt-6`}
 
     & {
+      a {
+        ${tw`text-current no-underline`}
+      }
       tr {
         ${tw`bg-white`}
       }
