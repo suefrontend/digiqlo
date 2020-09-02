@@ -1,5 +1,6 @@
 import * as firebase from "firebase/app";
 import "firebase/firestore";
+import 'firebase/storage'
 
 const firebaseConfig = {
   apiKey: "AIzaSyDLleERNAa5sQ9g6EfXbDwbL6JjDy8ofsk",
@@ -13,5 +14,9 @@ const firebaseConfig = {
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
+const storage = firebase.storage()
 
-export default firebase;
+export {
+  storage, firebase as default
+}
+

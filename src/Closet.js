@@ -6,6 +6,7 @@ import { StyledHeadingH2 } from './styles/StyledHeading';
 import { StyledClosetContainer, Flex } from './styles/StyledContainer'
 import { StyledSelectContainer } from './styles/StyledInput';
 import firebase from './firebase/firestore'
+import { storage } from "./firebase/firestore"
 
 function useLists() {
   const [lists, setLists] = useState([])
@@ -28,13 +29,39 @@ function useLists() {
   return lists
 }
 
+
+
+
 const Closet = ({ id }) => {
 
   const lists = useLists()
-  console.log(lists)
 
+  const [albums, setAlbums] = useState([])
+  const [images, setImages] = useState([]);
+  const [albumName, setAlbumName] = useState("");
+
+  useEffect(() => {
+    firebase.firestore().collection('albums').doc("test").onSnapshot((snapshot) => {
+      const tempAlbums = []
+      // snapshot.forEach(doc => {
+      //   tempAlbums.push({ ...doc.data(), id: doc.id })
+      // })
+      setImages(snapshot.data().images || []);
+      setAlbumName(snapshot.data().name);
+      setAlbums(tempAlbums)
+    })
+  }, [])
+
+  console.log(albums)
   return (
     <>
+
+      {images.map(el => (
+        <aside>
+          Image: <img src={el.url} alt="album" />
+          {/* <h3>Album Name: {album.name}</h3> */}
+        </aside>
+      ))}
 
       {lists.map(list => {
         return (

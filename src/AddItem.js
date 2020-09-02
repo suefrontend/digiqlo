@@ -2,30 +2,57 @@ import React, { useState, useEffect } from 'react';
 import { Form, FormItemFull, FormItemHalf, Span, FormItem, FormItemContainer } from "./styles/StyledForm"
 import { StyledHeadingH2 } from './styles/StyledHeading'
 import { StyledContainerMain } from './styles/StyledContainer';
-import firebase from './firebase/firestore'
+import firebase, { storage } from './firebase/firestore'
+import { useForm } from 'react-hook-form'
 
-const AddItem = () => {
+function AddItem() {
 
-  const [label, setLabel] = useState('')
+  const [albumName, setAlbumName] = useState('')
+  const [file, setFile] = useState(null)
 
-  const addItem = (e) => {
-    e.preventDefault();
-
-    firebase
-      .firestore()
-      .collection("closet")
-      .add({
-        label
-      })
-    setLabel('')
+  const onAlbumNameChange = (e) => {
+    setAlbumName(e.target.value)
   }
 
+  const onFileChange = (e) => {
+    setFile(e.target.files[0])
+  }
+
+  // const onAlbumCreate = () => {
+  //   if (!albumName) {
+  //     return
+  //   }
+  //   firebase.firestore().collection('albums').doc(albumName).set({
+  //     name: albumName
+  //   })
+  //   setAlbumName('');
+  // }
+
+  const onUpload = async () => {
+    const storageRef = storage.ref()
+    const fileRef = storageRef.child(file.name)
+    await fileRef.put(file)
+    firebase.firestore().collection("albums").doc("test").set({
+      images: firebase.firestore.FieldValue.arrayUnion({
+        name: file.name,
+        url: await fileRef.getDownloadURL()
+      }),
+      label: albumName
+    })
+  }
 
   return (
     <>
+
+      <input value={albumName} onChange={onAlbumNameChange} type="text" />
+      <input type="file" onChange={onFileChange} />
+      <input />
+      <button onClick={onUpload}>Create Album</button>
+
+
       <StyledHeadingH2>Add Item</StyledHeadingH2>
       <StyledContainerMain>
-        <Form onSubmit={addItem}>
+        <Form>
           <FormItemContainer>
             <FormItemHalf>
               <label for="inline-full-name">Image</label>
@@ -33,7 +60,7 @@ const AddItem = () => {
             </FormItemHalf>
             <FormItemHalf>
               <label for="inline-full-name">Label</label>
-              <input type="text" placeholder="" value={label} onChange={e => setLabel(e.target.value)} />
+              <input type="text" placeholder="" />
             </FormItemHalf>
           </FormItemContainer>
 
