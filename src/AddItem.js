@@ -7,65 +7,110 @@ import { useForm } from 'react-hook-form'
 
 function AddItem() {
 
-  const [albumName, setAlbumName] = useState('')
+  const [label, setLabel] = useState('')
   const [file, setFile] = useState(null)
+  const [brand, setBrand] = useState('')
+  const [pice, setPrice] = useState('')
+  const [size, setSize] = useState('')
+  const [note, setNote] = useState('')
+  const [color, setColor] = useState('')
+  const [category, setCategory] = useState('')
+  const [sleeve, setSleeve] = useState({
+    sleeve: "long"
+  })
 
-  const onAlbumNameChange = (e) => {
-    setAlbumName(e.target.value)
+  const onLabelChange = (e) => {
+    setLabel(e.target.value)
+  }
+  const onBrandChange = (e) => {
+    setBrand(e.target.value)
+  }
+  const onSizeChange = (e) => {
+    setSize(e.target.value)
+  }
+  const onNoteChange = (e) => {
+    setNote(e.target.value)
+  }
+  const onCategoryChange = (e) => {
+    setCategory(e.target.value)
+    console.log('Category', category)
   }
 
   const onFileChange = (e) => {
     setFile(e.target.files[0])
   }
 
-  // const onAlbumCreate = () => {
-  //   if (!albumName) {
-  //     return
-  //   }
-  //   firebase.firestore().collection('albums').doc(albumName).set({
-  //     name: albumName
-  //   })
-  //   setAlbumName('');
-  // }
 
-  const onUpload = async () => {
+  const onUpload = async (e) => {
+    e.preventDefault();
+
     const storageRef = storage.ref()
     const fileRef = storageRef.child(file.name)
     await fileRef.put(file)
-    firebase.firestore().collection("albums").doc("test").set({
+    firebase.firestore().collection("closet").doc("test").collection("testcollection").doc().set({
       images: firebase.firestore.FieldValue.arrayUnion({
         name: file.name,
         url: await fileRef.getDownloadURL()
       }),
-      label: albumName
+      label,
+      category
     })
+  }
+
+  function handleChange(e) {
+    console.log("VALUE", e.target.value);
+    console.log('Category', category)
   }
 
   return (
     <>
 
-      <input value={albumName} onChange={onAlbumNameChange} type="text" />
-      <input type="file" onChange={onFileChange} />
-      <input />
-      <button onClick={onUpload}>Create Album</button>
+      {/* <input name="label"
+        value={albumName}
+        onChange={onAlbumNameChange}
+        type="text" />
+      {/* <input type="file" onChange={onFileChange} /> */}
+      {/* <button onClick={onUpload}>Create Album</button> */} */}
 
 
       <StyledHeadingH2>Add Item</StyledHeadingH2>
       <StyledContainerMain>
-        <Form>
+        <Form onSubmit={onUpload}>
           <FormItemContainer>
             <FormItemHalf>
               <label for="inline-full-name">Image</label>
-              <input type="text" placeholder="" />
+              <input type="file" onChange={onFileChange} />
             </FormItemHalf>
             <FormItemHalf>
               <label for="inline-full-name">Label</label>
-              <input type="text" placeholder="" />
+              <input
+                name="label"
+                value={label}
+                onChange={onLabelChange}
+                type="text"
+              />
             </FormItemHalf>
           </FormItemContainer>
 
           <FormItemContainer>
             <FormItemHalf>
+
+              <label for="category">Category</label>
+              <select name="category" onChange={onCategoryChange} value={category}>
+                <option value="outerwears">Outerwears</option>
+                <option value="tops">Tops</option>
+                <option value="shirts">Shirts</option>
+                <option value="suits">Suits</option>
+                <option value="knitted">Knitted</option>
+                <option value="bottoms">Bottoms</option>
+                <option value="dresses">Dresses</option>
+                <option value="shoes">Shoes</option>
+                <option value="sportswears">Sportswears</option>
+                <option value="undersears">Undersears</option>
+                <option value="accessories">Accessories</option>
+              </select>
+
+
               <label for="color">Category</label>
 
               <select>
@@ -162,22 +207,22 @@ function AddItem() {
             <FormItemHalf>
               <label for="color">Color</label>
 
-              <select>
-                <option>Black</option>
-                <option>White</option>
-                <option>Gray</option>
-                <option>Brown</option>
-                <option>Red</option>
-                <option>Green</option>
-                <option>Blue</option>
-                <option>Purple</option>
-                <option>Yellow</option>
-                <option>Orange</option>
-                <option>Ivory</option>
-                <option>Navy</option>
-                <option>Beige</option>
-                <option>Border</option>
-                <option>Stripe</option>
+              <select name="color" value={color} onChange={handleChange} >
+                <option value="black">Black</option>
+                <option value="white">White</option>
+                <option value="gray">Gray</option>
+                <option value="brown">Brown</option>
+                <option value="red">Red</option>
+                <option value="green">Green</option>
+                <option value="blue">Blue</option>
+                <option value="purple">Purple</option>
+                <option value="yellow">Yellow</option>
+                <option value="orange">Orange</option>
+                <option value="ivory">Ivory</option>
+                <option value="navy">Navy</option>
+                <option value="beige">Beige</option>
+                <option value="border">Border</option>
+                <option value="stripe">Stripe</option>
               </select>
               {/* <div>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" /></svg>
@@ -189,11 +234,22 @@ function AddItem() {
           <FormItemContainer>
             <FormItemHalf>
               <label for="inline-full-name">Brand</label>
-              <input type="text" placeholder="" />
+
+              <input
+                name="brand"
+                value={brand}
+                onChange={onBrandChange}
+                type="text"
+              />
             </FormItemHalf>
             <FormItemHalf>
               <label for="size">Price</label>
-              <input type="text" placeholder="" />
+              <input
+                name="size"
+                value={size}
+                onChange={onSizeChange}
+                type="text"
+              />
             </FormItemHalf>
           </FormItemContainer>
 
@@ -204,9 +260,27 @@ function AddItem() {
             </FormItemHalf>
             <FormItemHalf>
               <label for="">Sleeve</label>
-              <input type="radio" id="long" name="sleeve" value="long" /><span>Long</span>
-              <input type="radio" id="short" name="sleeve" value="short" /><span>Short</span>
-              <input type="radio" id="none" name="sleeve" value="none" /><span>None</span>
+              <input
+                type="radio"
+                name="sleeve"
+                value="long"
+                checked={sleeve === "long"}
+                onChange={handleChange}
+              /><span>Long</span>
+              <input
+                type="radio"
+                name="sleeve"
+                value="short"
+                checked={sleeve === "short"}
+                onChange={handleChange}
+              /><span>Short</span>
+              <input
+                type="radio"
+                name="sleeve"
+                value="none"
+                checked={sleeve === "none"}
+                onChange={handleChange}
+              /><span>None</span>
             </FormItemHalf>
           </FormItemContainer>
 
@@ -224,7 +298,12 @@ function AddItem() {
           <FormItemContainer>
             <FormItemFull>
               <label for="">Note</label>
-              <textarea />
+              <textarea
+                name="note"
+                value={note}
+                onChange={onNoteChange}
+                type="text"
+              />
             </FormItemFull>
           </FormItemContainer>
 
