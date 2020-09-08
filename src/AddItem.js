@@ -19,6 +19,205 @@ function AddItem() {
     sleeve: "long"
   })
 
+  const cloths = [
+    {
+      category: "Outerwears",
+      item: "Coats"
+    },
+    {
+      category: "Outerwears",
+      item: "Jackets"
+    },
+    {
+      category: "Tops",
+      item: "Hoodies"
+    },
+    {
+      category: "Tops",
+      item: "Cardigans"
+    },
+    {
+      category: "Tops",
+      item: "Long-sleeved"
+    },
+    {
+      category: "Tops",
+      item: "Short-sleeved"
+    },
+    {
+      category: "Tops",
+      item: "Polo Shirts"
+    },
+    {
+      category: "Tops",
+      item: "T-shirts"
+    },
+    {
+      category: "Tops",
+      item: "Sweatshirts"
+    },
+    {
+      category: "Tops",
+      item: "Tank Top"
+    },
+    {
+      category: "Tops",
+      item: "Camisole"
+    },
+    {
+      category: "Shirts",
+      item: "Shirts"
+    },
+    {
+      category: "Shirts",
+      item: "Blouses"
+    },
+    {
+      category: "Suits",
+      item: "Trousers"
+    },
+    {
+      category: "Suits",
+      item: "Waistcoats"
+    },
+    {
+      category: "Suits",
+      item: "Blazers"
+    },
+    {
+      category: "Suits",
+      item: "Skirts"
+    },
+    {
+      category: "Knitted",
+      item: "Cardigans"
+    },
+    {
+      category: "Knitted",
+      item: "Sweaters"
+    },
+    {
+      category: "Bottoms",
+      item: "Pants"
+    },
+    {
+      category: "Bottoms",
+      item: "Skirts"
+    },
+    {
+      category: "Bottoms",
+      item: "Shorts"
+    },
+    {
+      category: "Bottoms",
+      item: "Leggins"
+    },
+    {
+      category: "Dresses",
+      item: "Short dresses"
+    },
+    {
+      category: "Dresses",
+      item: "Long dresses"
+    },
+    {
+      category: "Shoes",
+      item: "Sneakers"
+    },
+    {
+      category: "Shoes",
+      item: "Sandals"
+    },
+    {
+      category: "Shoes",
+      item: "Boots"
+    },
+    {
+      category: "Shoes",
+      item: "Mules"
+    },
+    {
+      category: "Shoes",
+      item: "Loafers"
+    },
+    {
+      category: "Shoes",
+      item: "Pumps"
+    },
+    {
+      category: "Shoes",
+      item: "Flats"
+    },
+    {
+      category: "Shoes",
+      item: "High Heels"
+    },
+    {
+      category: "Sportswear",
+      item: "Gym"
+    },
+    {
+      category: "Sportswear",
+      item: "Yoga"
+    },
+    {
+      category: "Sportswear",
+      item: "Bras"
+    },
+    {
+      category: "Sportswear",
+      item: "Swimwears"
+    },
+    {
+      category: "Underwear",
+      item: "Lingerie"
+    },
+    {
+      category: "Underwear",
+      item: "Underwear"
+    },
+    {
+      category: "Underwear",
+      item: "Socks"
+    },
+    {
+      category: "Nightwears",
+      item: "Pajamas"
+    },
+    {
+      category: "Nightwears",
+      item: "Loungewears"
+    },
+    {
+      category: "Accessories",
+      item: "Scarves"
+    },
+    {
+      category: "Accessories",
+      item: "Gloves"
+    },
+    {
+      category: "Accessories",
+      item: "Belts"
+    },
+    {
+      category: "Accessories",
+      item: "Hats"
+    },
+    {
+      category: "Accessories",
+      item: "Ties"
+    },
+    {
+      category: "Accessories",
+      item: "Caps"
+    },
+    {
+      category: "Accessories",
+      item: "Bags"
+    },
+  ]
+
   const onLabelChange = (e) => {
     setLabel(e.target.value)
   }
@@ -62,6 +261,30 @@ function AddItem() {
     console.log('Category', category)
   }
 
+  const options = cloths.map(
+    (el) => (
+      <option key={el.item} value={el.item}>
+        {el.item}
+      </option>
+    )
+  );
+
+  const categoryFilter = cloths.map(cloth => {
+    return cloth.category;
+  })
+
+  const resultArr = categoryFilter.filter((data, index) => {
+    return categoryFilter.indexOf(data) === index;
+  })
+
+  const categoryOptions = resultArr.map(
+    (el) => (
+      <option key={el} value={el}>
+        {el}
+      </option>
+    )
+  );
+
   return (
     <>
 
@@ -71,7 +294,6 @@ function AddItem() {
         type="text" />
       {/* <input type="file" onChange={onFileChange} /> */}
       {/* <button onClick={onUpload}>Create Album</button> */} */}
-
 
       <StyledHeadingH2>Add Item</StyledHeadingH2>
       <StyledContainerMain>
@@ -97,23 +319,13 @@ function AddItem() {
 
               <label for="category">Category</label>
               <select name="category" onChange={onCategoryChange} value={category}>
-                <option value="outerwears">Outerwears</option>
-                <option value="tops">Tops</option>
-                <option value="shirts">Shirts</option>
-                <option value="suits">Suits</option>
-                <option value="knitted">Knitted</option>
-                <option value="bottoms">Bottoms</option>
-                <option value="dresses">Dresses</option>
-                <option value="shoes">Shoes</option>
-                <option value="sportswears">Sportswears</option>
-                <option value="undersears">Undersears</option>
-                <option value="accessories">Accessories</option>
+                {categoryOptions}
               </select>
 
 
               <label for="color">Category</label>
 
-              <select>
+              {/*<select>
                 <optgroup label="Outerwears">
                   <option>Outerwears - Coats</option>
                   <option>Outerwears - Jackets</option>
@@ -198,7 +410,7 @@ function AddItem() {
                   <option>Accessories - Bags</option>
                 </optgroup>
 
-              </select>
+              </select>*/}
               {/* <div>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" /></svg>
       </div> */}
