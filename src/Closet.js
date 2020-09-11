@@ -8,60 +8,98 @@ import { StyledSelectContainer } from './styles/StyledInput';
 import firebase from './firebase/firestore'
 import { storage } from "./firebase/firestore"
 
-function useLists() {
-  const [lists, setLists] = useState([])
+// const getCategory = () => {
 
-  useEffect(() => {
-    firebase
-      .firestore()
-      .collection('closet')
-      .onSnapshot(snapshot => {
-        const lists = snapshot.docs.map(doc => ({
-          id: doc.id,
-          ...doc.data()
-        }))
+//   const [category, setCategory] = useState([]);
+//   const [error, setError] = useState();
 
-        console.log(lists)
-        setLists(lists)
-      })
-  }, [])
+//   useEffect(() => {
+//     firebase.firestore().collection('closet')
+//       .then(response => {
+//         const categoryLists = [];
 
-  return lists
-}
+//         response.forEach(doc => {
+//           const categoryList = {
+//             id: doc.id,
+//             ...doc.data()
+//           }
+//           categoryLists.push(categoryList)
+//         })
+//         setCategory(categoryLists)
+//         console.log(response)
+//       })
+//       .catch(error => {
+//         setError(error);
+//       });
 
+//   }, [])
 
+// }
 
 
 const Closet = ({ id }) => {
 
-  const lists = useLists()
+  // const lists = useLists()
 
-  const [albums, setAlbums] = useState([])
-  const [images, setImages] = useState([]);
-  const [albumName, setAlbumName] = useState("");
+  // const [albums, setAlbums] = useState([])
+  // const [images, setImages] = useState([]);
+  // const [albumName, setAlbumName] = useState("");
+
+  // useEffect(() => {
+  //   firebase.firestore().collection('closet').doc("Tops").onSnapshot((snapshot) => {
+  //     const tempAlbums = []
+  //     // snapshot.forEach(doc => {
+  //     //   tempAlbums.push({ ...doc.data(), id: doc.id })
+  //     // })
+  //     setImages(snapshot.data().images || []);
+  //     setAlbumName(snapshot.data().name);
+  //     setAlbums(tempAlbums)
+  //   })
+  // }, [])
+
+  const [lists, setLists] = useState([])
+  const [error, setError] = useState();
 
   useEffect(() => {
-    firebase.firestore().collection('albums').doc("test").onSnapshot((snapshot) => {
-      const tempAlbums = []
-      // snapshot.forEach(doc => {
-      //   tempAlbums.push({ ...doc.data(), id: doc.id })
-      // })
-      setImages(snapshot.data().images || []);
-      setAlbumName(snapshot.data().name);
-      setAlbums(tempAlbums)
-    })
+    // firebase.firestore().collectionGroup('closet')
+    //   .then(response => {
+    //     // const closetLists = [];
+
+    //     // response.forEach(doc => {
+    //     //   const closetList = {
+    //     //     id: doc.id,
+    //     //     ...doc.data()
+    //     //   }
+    //     //   closetLists.push(closetList)
+    //     // })
+    //     // setLists(closetLists)
+    //     console.log(response)
+    //   })
+    //   .catch(error => {
+    //     setError(error);
+    //   });
+
+    const db = firebase.firestore();
+
+    const fetchCategory = db.collection('closet');
+
+    fetchCategory.onSnapshot(snapshot => {
+      snapshot.forEach(function (doc) {
+        // doc.data() is never undefined for query doc snapshots
+        console.log(doc.id, " => ", doc.data());
+      });
+    });
   }, [])
 
-  console.log(albums)
+  console.log(lists)
   return (
     <>
-
+      {/* 
       {images.map(el => (
         <aside>
           Image: <img src={el.url} alt="album" />
-          {/* <h3>Album Name: {album.name}</h3> */}
         </aside>
-      ))}
+      ))} */}
 
       {lists.map(list => {
         return (

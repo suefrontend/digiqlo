@@ -246,7 +246,7 @@ function AddItem() {
     const storageRef = storage.ref()
     const fileRef = storageRef.child(file.name)
     await fileRef.put(file)
-    firebase.firestore().collection("closet").doc("test").collection("testcollection").doc().set({
+    firebase.firestore().collection("closet").doc("Tops").collection("Hoodies").doc().set({
       images: firebase.firestore.FieldValue.arrayUnion({
         name: file.name,
         url: await fileRef.getDownloadURL()
