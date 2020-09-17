@@ -81,14 +81,26 @@ const Closet = ({ id }) => {
 
     const db = firebase.firestore();
 
-    const fetchCategory = db.collection('closet');
+    db.collection('closet').get()
+      // db.collection('closet')
+      .then(response => {
+        const closetLists = [];
+        response.forEach(function (doc) {
+          // doc.data() is never undefined for query doc snapshots
+          const closetList = {
+            id: doc.id,
+            ...doc.data()
+          }
+          closetLists.push(closetList)
+          // console.log(doc.id, " => ", doc.data());
+        })
+        setLists(closetLists)
 
-    fetchCategory.onSnapshot(snapshot => {
-      snapshot.forEach(function (doc) {
-        // doc.data() is never undefined for query doc snapshots
-        console.log(doc.id, " => ", doc.data());
       });
-    });
+
+
+
+
   }, [])
 
   console.log(lists)
@@ -137,7 +149,20 @@ const Closet = ({ id }) => {
 
 
       <StyledClosetContainer>
-        <StyledCard>
+
+        {lists.map(list => {
+          return (
+            <StyledCard>
+              <div>
+                <Link to={`/closet/${id}`}><img src="https://ae01.alicdn.com/kf/HTB1BQPcEkCWBuNjy0Faq6xUlXXab.jpg_q50.jpg" alt="" /></Link>
+              </div>
+              <p><Link to={`/closet/${id}`}>{list.label}</Link></p>
+            </StyledCard>
+          )
+        }
+        )}
+
+        {/* <StyledCard>
 
           <div>
             <Link to={`/closet/${id}`}><img src="https://ae01.alicdn.com/kf/HTB1BQPcEkCWBuNjy0Faq6xUlXXab.jpg_q50.jpg" alt="" /></Link>
@@ -195,7 +220,7 @@ const Closet = ({ id }) => {
             <Link to={`/closet/${id}`}><img src="https://image.uniqlo.com/UQ/ST3/AsianCommon/imagesgoods/415390/item/goods_02_415390.jpg" alt="" /></Link>
           </div>
           <p><Link to={`/closet/${id}`}>The Coldest Sunset</Link></p>
-        </StyledCard>
+        </StyledCard> */}
       </StyledClosetContainer>
     </>
   )
