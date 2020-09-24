@@ -79,7 +79,21 @@ const Closet = ({ id }) => {
     //     setError(error);
     //   });
 
-    const db = firebase.firestore();
+    // const data = [
+
+    // ]
+
+    // var db = firebase.firestore();
+    // var batch = db.batch()
+
+    // data.forEach((doc) => {
+    //   var docRef = db.collection("closet").doc(); //automatically generate unique id
+    //   batch.set(docRef, doc);
+    // });
+
+    // batch.commit()
+
+    var db = firebase.firestore();
 
     db.collection('closet').get()
       // db.collection('closet')
@@ -146,15 +160,13 @@ const Closet = ({ id }) => {
         <span>Total: 102</span>
       </Flex>
 
-
-
       <StyledClosetContainer>
 
         {lists.map(list => {
           return (
             <StyledCard>
               <div>
-                <Link to={`/closet/${id}`}><img src="https://ae01.alicdn.com/kf/HTB1BQPcEkCWBuNjy0Faq6xUlXXab.jpg_q50.jpg" alt="" /></Link>
+                <Link to={`/closet/${id}`}><img src={list.image} alt={list.label} /></Link>
               </div>
               <p><Link to={`/closet/${id}`}>{list.label}</Link></p>
             </StyledCard>
@@ -162,65 +174,6 @@ const Closet = ({ id }) => {
         }
         )}
 
-        {/* <StyledCard>
-
-          <div>
-            <Link to={`/closet/${id}`}><img src="https://ae01.alicdn.com/kf/HTB1BQPcEkCWBuNjy0Faq6xUlXXab.jpg_q50.jpg" alt="" /></Link>
-          </div>
-          <p><Link to={`/closet/${id}`}>White Butterfly Sleeve Shirt</Link></p>
-
-        </StyledCard>
-        <StyledCard>
-
-          <div>
-            <Link to={`/closet/${id}`}><img src="https://cdn.grail.bz/images/goods/d/ac1357/ac1357_u.jpg" alt="" /></Link>
-          </div>
-          <p><Link to={`/closet/${id}`}>White Butterfly Sleeve Shirt</Link></p>
-        </StyledCard>
-
-        <StyledCard>
-          <div>
-            <Link to={`/closet/${id}`}><img src="https://image.vector-park.jp/images/item/original2/171/9020/02/07/171-902002070127_1.jpg?t=1581912553" alt="" /></Link>
-          </div>
-          <p><Link to={`/closet/${id}`}>The Coldest Sunset</Link></p>
-        </StyledCard>
-
-        <StyledCard>
-          <div>
-            <Link to={`/closet/${id}`}><img src="https://image1.kind.co.jp/images/item/original/8039000237712_1.jpg?t=1591019413" alt="" /></Link>
-          </div>
-          <p><Link to={`/closet/${id}`}>The Coldest Sunset</Link></p>
-        </StyledCard>
-        <StyledCard>
-          <div>
-            <Link to={`/closet/${id}`}><img src="https://image.t-fashion.jp/proportionbd/images/goods/1709-1217229901/z-1709-1217229901_VU.jpg" alt="" /></Link>
-          </div>
-          <p><Link to={`/closet/${id}`}>The Coldest Sunset</Link></p>
-        </StyledCard>
-        <StyledCard>
-          <div>
-            <Link to={`/closet/${id}`}><img src="https://www.gap.co.jp/webcontent/0018/731/545/cn18731545.jpg" alt="" /></Link>
-          </div>
-          <p><Link to={`/closet/${id}`}>The Coldest Sunset</Link></p>
-        </StyledCard>
-        <StyledCard>
-          <div>
-            <Link to={`/closet/${id}`}><img src="https://www.masksjp.com/images/shop/desc/22932415000159c5b41ba748b792e670-w300312.jpg" alt="" /></Link>
-          </div>
-          <p><Link to={`/closet/${id}`}>The Coldest Sunset</Link></p>
-        </StyledCard>
-        <StyledCard>
-          <div>
-            <Link to={`/closet/${id}`}><img src="https://base-ec2if.akamaized.net/w=640,a=0,q=90,u=1/images/item/origin/e3c6515c9814887649277490a1cb4ea6.jpg" alt="" /></Link>
-          </div>
-          <p><Link to={`/closet/${id}`}>The Coldest Sunset</Link></p>
-        </StyledCard>
-        <StyledCard>
-          <div>
-            <Link to={`/closet/${id}`}><img src="https://image.uniqlo.com/UQ/ST3/AsianCommon/imagesgoods/415390/item/goods_02_415390.jpg" alt="" /></Link>
-          </div>
-          <p><Link to={`/closet/${id}`}>The Coldest Sunset</Link></p>
-        </StyledCard> */}
       </StyledClosetContainer>
     </>
   )
