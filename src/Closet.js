@@ -165,7 +165,7 @@ const Closet = ({ id }) => {
         {lists.map(list => {
           return (
             <StyledCard>
-              <div>
+              <div className="">
                 <Link to={`/closet/${id}`}><img src={list.image} alt={list.label} /></Link>
               </div>
               <p><Link to={`/closet/${id}`}>{list.label}</Link></p>
