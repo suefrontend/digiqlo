@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { StyledHeadingH2 } from './styles/StyledHeading';
-import { StyledClosetContainer, Flex } from './styles/StyledContainer'
+import { Flex } from './styles/StyledContainer'
 import { StyledSelectContainer } from './styles/StyledInput';
 import firebase from './firebase/firestore'
 import { storage } from "./firebase/firestore"
@@ -54,9 +54,7 @@ const Closet = () => {
         <span>Total: 102</span>
       </Flex>
 
-      <StyledClosetContainer>
         <CardList clothes={clothes} />
-      </StyledClosetContainer>
     </>
   )
 }

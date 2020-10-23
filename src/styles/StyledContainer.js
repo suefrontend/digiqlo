@@ -38,7 +38,7 @@ export const StyledContainerNoBg = styled.div`
     }
     div:last-of-type {
       ${tw`ml-12 w-2/3`}
-    }    
+    }
     img {
       ${tw`w-full object-cover border border-solid border-gray-300`}
     }
@@ -58,9 +58,6 @@ export const StyledFlex = styled.div`
   }
 `;
 
-export const StyledClosetContainer = styled.div`
-  ${tw`grid grid-cols-5 gap-4`}
-`;
 
 export const Flex = styled.div`
   ${tw`flex items-center justify-between my-6`}

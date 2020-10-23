@@ -1,4 +1,5 @@
 import React from 'react';
+import { StyledCardList } from '../styles/StyledCard';
 import CardItem from './CardItem';
 
 const CardList = ({ clothes }) => {
@@ -9,7 +10,7 @@ const CardList = ({ clothes }) => {
     )
   });
 
-  return <>{renderedList}</>
+  return <StyledCardList>{renderedList}</StyledCardList>
 }
 
 export default CardList;

@@ -1,15 +1,12 @@
 import styled from 'styled-components'
 import tw from 'twin.macro'
 
-const StyledCard = styled.div`
+export const StyledCard = styled.div`
 
 ${tw`flex justify-between flex-col bg-white shadow`}
 
-  & {      
-    
-    
-      
-      div {      
+  & {
+      div {
         ${tw`flex items-center h-full`}
 
         a{
@@ -19,8 +16,8 @@ ${tw`flex justify-between flex-col bg-white shadow`}
             ${tw`w-full h-full object-cover`}
           }
         }
-      }      
-    
+      }
+
 
     p {
       ${tw`px-4`}
@@ -29,9 +26,11 @@ ${tw`flex justify-between flex-col bg-white shadow`}
         ${tw`text-current no-underline text-base`}
       }
     }
-  
+
   }
 
 `;
 
-export default StyledCard;
+export const StyledCardList = styled.div`
+  ${tw`grid grid-cols-5 gap-4`}
+`;
