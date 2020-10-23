@@ -1,5 +1,5 @@
 import React from 'react'
-import ListItem from './components/ListItem'
+import ListItem from './components/CardList'
 import { StyledHeadingH2 } from './styles/StyledHeading'
 import { StyledContainerMain, StyledFlexContainer } from './styles/StyledContainer';
 import { StyledListItem, StyledImage, StyledTitle, StyledIcons } from './styles/StyledListItem';

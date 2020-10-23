@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
-import ListItem from './components/ListItem'
+import ListItem from './components/CardList'
 import { Form, FormItemFull, FormItemHalf, Span, FormItem, FormItemContainer } from "./styles/StyledForm"
 import { StyledContainerMain } from './styles/StyledContainer';
 import { StyledHeadingH2 } from './styles/StyledHeading'
