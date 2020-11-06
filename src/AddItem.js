@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Form, FormItemFull, FormItemHalf, Span, FormItem, FormItemContainer } from "./styles/StyledForm"
 import { StyledHeadingH2 } from './styles/StyledHeading'
-import { StyledContainerMain } from './styles/StyledContainer';
 import firebase, { storage } from './firebase/firestore'
 import { useForm } from 'react-hook-form'
 
@@ -261,29 +260,29 @@ function AddItem() {
     console.log('Category', category)
   }
 
-  const options = cloths.map(
-    (el) => (
-      <option key={el.item} value={el.item}>
-        {el.item}
-      </option>
-    )
-  );
+  // const options = cloths.map(
+  //   (el) => (
+  //     <option key={el.item} value={el.item}>
+  //       {el.item}
+  //     </option>
+  //   )
+  // );
 
-  const categoryFilter = cloths.map(cloth => {
-    return cloth.category;
-  })
+  // const categoryFilter = cloths.map(cloth => {
+  //   return cloth.category;
+  // })
 
-  const resultArr = categoryFilter.filter((data, index) => {
-    return categoryFilter.indexOf(data) === index;
-  })
+  // const resultArr = categoryFilter.filter((data, index) => {
+  //   return categoryFilter.indexOf(data) === index;
+  // })
 
-  const categoryOptions = resultArr.map(
-    (el) => (
-      <option key={el} value={el}>
-        {el}
-      </option>
-    )
-  );
+  // const categoryOptions = resultArr.map(
+  //   (el) => (
+  //     <option key={el} value={el}>
+  //       {el}
+  //     </option>
+  //   )
+  // );
 
   return (
     <>
@@ -296,7 +295,7 @@ function AddItem() {
       {/* <button onClick={onUpload}>Create Album</button> */} */}
 
       <StyledHeadingH2>Add Item</StyledHeadingH2>
-      <StyledContainerMain>
+
         <Form onSubmit={onUpload}>
           <FormItemContainer>
             <FormItemHalf>
@@ -319,7 +318,7 @@ function AddItem() {
 
               <label for="category">Category</label>
               <select name="category" onChange={onCategoryChange} value={category}>
-                {categoryOptions}
+                {/* {categoryOptions} */}
               </select>
 
 
@@ -527,7 +526,7 @@ function AddItem() {
 
 
         </Form>
-      </StyledContainerMain>
+
 
     </>
   )

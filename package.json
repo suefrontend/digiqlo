@@ -1,7 +1,7 @@
 {
   "name": "digiqlo",
   "version": "0.1.0",
-  "homepage": "https://suefrontend.github.io/digiqlo",
+  "homepage": "https://suefrontend.github.io/",
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.11.0",

@@ -1,9 +1,9 @@
 import React from 'react'
-import { StyledHeadingH2, StyledHeadingH3 } from './styles/StyledHeading'
-import { FlexWrapper, FlexInner, FlexItem, StyledContainerNoBg, StyledContainerMain } from './styles/StyledContainer';
-import { StyledGraph, StyledGraphLabel, StyledGraphStatus, StyledGraphPercentage } from './styles/StyledGraph'
-import { StyledContainerMiniWrapper, StyledContainerMini, StyledFlexContainerMini } from './styles/StyledContainer'
-import { StyledTypographyRight, StyledTypography } from './styles/StyledTypography'
+import { StyledHeadingH2, StyledHeadingH3 } from '../styles/StyledHeading'
+import { FlexWrapper, FlexInner, FlexItem, StyledContainerNoBg, StyledContainerMain } from '../styles/Container';
+import { StyledGraph, StyledGraphLabel, StyledGraphStatus, StyledGraphPercentage } from '../styles/StyledGraph'
+import { StyledContainerMiniWrapper, StyledContainerMini, StyledFlexContainerMini } from '../styles/Container'
+import { StyledTypographyRight, StyledTypography } from '../styles/StyledTypography'
 
 const Reports = () => (
   <>
