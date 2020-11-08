@@ -6,28 +6,7 @@ import firebase from './firebase/firestore'
 import { storage } from "./firebase/firestore"
 import CardList from './components/CardList';
 
-const Closet = () => {
-
-  const [clothes, setClothes] = useState([])
-
-  useEffect(() => {
-
-    var db = firebase.firestore();
-
-    db.collection('closet').get()
-
-      .then(response => {
-        const closetLists = [];
-        response.forEach(function (doc) {
-          const closetList = {
-            id: doc.id,
-            ...doc.data()
-          }
-          closetLists.push(closetList)
-        })
-        setClothes(closetLists)
-      });
-  }, [])
+const Closet = ({clothes}) => {
 
   return (
     <>
