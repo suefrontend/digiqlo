@@ -1,16 +1,16 @@
 import React from 'react';
 import Navbar from './components/Navbar';
 import Main from './components/Main';
-import * as S from './styles/Container';
+import { StyledContainer } from './styles/Container';
 import './App.css';
 
 const App = () => {
 
 	return (
-		<S.Container>
+		<StyledContainer>
       <Navbar />
       <Main />
-    </S.Container>
+    </StyledContainer>
   )
 }
 

@@ -1,12 +1,12 @@
 import React from 'react';
-import * as S from '../styles/Container';
+import { StyledSidebar } from '../styles/Container';
 import NavItem from './NavItem';
 
 
 const Navbar = () => (
-	<S.Sidebar>
+	<StyledSidebar>
 		<NavItem />
-	</S.Sidebar>
+	</StyledSidebar>
 );
 
 export default Navbar;

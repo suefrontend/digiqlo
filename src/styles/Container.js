@@ -3,18 +3,18 @@ import tw from "twin.macro"
 
 const S = {};
 
-export const Container = styled.div`
+export const StyledContainer = styled.div`
   display: flex;
 `;
-export const Main = styled.div`
+export const StyledMain = styled.div`
   width: 70%;
   ${tw`box-border bg-gray-100 flex-1 pt-4 pb-16 px-10`}
 `;
-export const Sidebar = styled.div`
+export const StyledSidebar = styled.div`
   ${tw`w-1/5 shadow-lg z-10`}
 `;
 
-export const MainContainer = styled.div`
+export const StyledMainContainer = styled.div`
 
   ${tw`bg-white shadow-md rounded pt-2 pb-6 mb-10`}
 

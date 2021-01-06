@@ -1,6 +1,6 @@
 import React from 'react'
 import ListItem from '../components/ListItem'
-import { StyledHeadingH2 } from '../styles/StyledHeading'
+import { StyledH2 } from '../styles/Heading';
 import { StyledFlexContainer } from '../styles/Container';
 import { StyledListItem, StyledImage, StyledTitle, StyledIcons } from '../styles/StyledListItem';
 import { StyledTable } from '../styles/StyledTable'
@@ -9,7 +9,7 @@ import { StyledTypographyRight, StyledTypography } from '../styles/StyledTypogra
 const Organize = () => {
   return (
     <div>
-    <StyledHeadingH2>Organize</StyledHeadingH2>
+    <StyledH2>Organize</StyledH2>
 
       <div>
         <p>Your Closet Plan</p>
@@ -19,9 +19,6 @@ const Organize = () => {
         <StyledTypography><span>65</span>Limit</StyledTypography>
         <StyledTypography><span>-24</span>Adjust</StyledTypography>
       </StyledFlexContainer>
-
-
-
 
       <StyledTable>
         <tr>

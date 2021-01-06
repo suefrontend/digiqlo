@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { StyledFlex } from '../styles/Container';
 import { StyledListItem, StyledImage, StyledTitle, StyledIcons } from '../styles/StyledListItem';
-import { SVGContainer, StyledSelect, StyledSelectContainer } from '../styles/StyledInput'
+import * as S from '../styles/Select'
 
 const ListItem = ({ id = 1 }) => (
 
@@ -11,7 +11,7 @@ const ListItem = ({ id = 1 }) => (
     <StyledFlex>
       {/* <span>Filter by:</span> */}
 
-      <StyledSelectContainer>
+      <S.SelectContainer>
         <select>
           <option>Jacket</option>
           <option>Outerwear</option>
@@ -27,7 +27,7 @@ const ListItem = ({ id = 1 }) => (
             <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"></path>
           </svg>
         </div>
-      </StyledSelectContainer>
+      </S.SelectContainer>
 
     </StyledFlex>
 

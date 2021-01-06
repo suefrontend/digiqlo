@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyledHeadingH2, StyledHeadingH3 } from '../styles/StyledHeading'
+import { StyledH2, StyledH3 } from '../styles/Heading';
 import { FlexWrapper, FlexInner, FlexItem, StyledContainerNoBg, StyledContainerMain } from '../styles/Container';
 import { StyledGraph, StyledGraphLabel, StyledGraphStatus, StyledGraphPercentage } from '../styles/StyledGraph'
 import { StyledContainerMiniWrapper, StyledContainerMini, StyledFlexContainerMini } from '../styles/Container'
@@ -7,7 +7,7 @@ import { StyledTypographyRight, StyledTypography } from '../styles/StyledTypogra
 
 const Reports = () => (
   <>
-    <StyledHeadingH2>Reports</StyledHeadingH2>
+    <StyledH2>Reports</StyledH2>
 
 
     <StyledContainerMiniWrapper>
@@ -31,7 +31,7 @@ const Reports = () => (
 
       <FlexInner>
         <FlexItem>
-          <StyledHeadingH3>Year</StyledHeadingH3>
+          <StyledH3>Year</StyledH3>
           <StyledGraph>
             <div>
               <StyledGraphLabel>
@@ -107,7 +107,7 @@ const Reports = () => (
       </FlexInner>
       <FlexInner>
         <FlexItem>
-          <StyledHeadingH3>Color</StyledHeadingH3>
+          <StyledH3>Color</StyledH3>
           <StyledGraph>
             <div>
               <StyledGraphLabel>
@@ -183,7 +183,7 @@ const Reports = () => (
       </FlexInner>
       <FlexInner>
         <FlexItem>
-          <StyledHeadingH3>Price</StyledHeadingH3>
+          <StyledH3>Price</StyledH3>
           <StyledGraph>
             <div>
               <StyledGraphLabel>
@@ -259,7 +259,7 @@ const Reports = () => (
       </FlexInner>
       <FlexInner>
         <FlexItem>
-          <StyledHeadingH3>Season</StyledHeadingH3>
+          <StyledH3>Season</StyledH3>
           <StyledGraph>
             <div>
               <StyledGraphLabel>

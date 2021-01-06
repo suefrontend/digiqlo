@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Form, FormItemFull, FormItemHalf, Span, FormItem, FormItemContainer } from "./styles/StyledForm"
-import { StyledHeadingH2 } from './styles/StyledHeading'
+import { StyledH2 } from './styles/Heading';
 import firebase, { storage } from './firebase/firestore'
 import { useForm } from 'react-hook-form'
 
@@ -294,7 +294,7 @@ function AddItem() {
       {/* <input type="file" onChange={onFileChange} /> */}
       {/* <button onClick={onUpload}>Create Album</button> */} */}
 
-      <StyledHeadingH2>Add Item</StyledHeadingH2>
+      <StyledH2>Add Item</StyledH2>
 
         <Form onSubmit={onUpload}>
           <FormItemContainer>
@@ -533,4 +533,3 @@ function AddItem() {
 }
 
 export default AddItem;
-

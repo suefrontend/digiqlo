@@ -2,13 +2,13 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 import ListItem from '../components/ListItem'
 import { Form, FormItemFull, FormItemHalf, Span, FormItem, FormItemContainer } from "../styles/StyledForm"
-import { StyledHeadingH2 } from '../styles/StyledHeading'
+import { StyledH2 } from '../styles/Heading';
 import { StyledTableWhishlist } from '../styles/StyledTable';
 import { StyledButtonMini } from '../styles/StyledButton';
 
 const Wishlist = ({ id }) => (
   <div>
-    <StyledHeadingH2>Wishlist</StyledHeadingH2>
+    <StyledH2>Wishlist</StyledH2>
 
       <StyledTableWhishlist>
         <tr>

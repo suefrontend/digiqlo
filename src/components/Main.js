@@ -10,12 +10,18 @@ import {
 	Switch,
 	Route
 } from 'react-router-dom';
-import * as S from '../styles/Container';
+import { StyledMain } from '../styles/Container';
 import firebase from '../firebase/firestore'
 
 const Main = () => {
 
-  const [clothes, setClothes] = useState([])
+  const [clothes, setClothes] = useState([]);
+  const [selected, setSelected] = useState('');
+
+  const onSelectedChange = (e) => {
+    console.log("What's been passed", e);
+    setSelected(e);
+  }
 
   useEffect(() => {
     const db = firebase.firestore();
@@ -31,12 +37,17 @@ const Main = () => {
         })
         setClothes(closetLists)
       });
-  }, [])
+  }, []);
 
 	return (
-    <S.Main>
+    <StyledMain>
       <Switch>
-        <Route exact path="/" render={() => <Closet clothes={clothes} /> } />
+        <Route exact path="/" render={() =>
+          <Closet
+            clothes={clothes}
+            onSelectedChange={onSelectedChange}
+            selected={selected}
+          /> } />
         <Route exact path="/additem" component={AddItem} />
         <Route exact path="/closet/:id" component={Detail} />
         <Route exact path="/reports" component={Reports} />
@@ -44,7 +55,7 @@ const Main = () => {
         <Route exact path="/wishlist" component={Wishlist} />
         <Route exact path="/wishlist/:id" component={Detail} />
       </Switch>
-    </S.Main>
+    </StyledMain>
   )
 }
 
