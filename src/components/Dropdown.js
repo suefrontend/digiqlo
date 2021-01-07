@@ -1,8 +1,6 @@
 import React, { useState } from 'react'
 
-const Dropdown = ({ clothes, onSelectedChange }) => {
-
-  const [defaultValue, setDefaultValue] = useState('All Items');
+const Dropdown = ({ clothes, onSelectedChange, defaultValue, selectedCategory }) => {
 
   const uniqueCategory = Array.from(new Set(clothes.map(cloth => cloth.category)))
     .map(category => {
@@ -21,9 +19,10 @@ const Dropdown = ({ clothes, onSelectedChange }) => {
   return (
     <>
       <select
-        value={defaultValue}
         onChange={e => onSelectedChange(e.target.value)}
       >
+        <option key="default" value={defaultValue}>{defaultValue}</option>
+
         {options}
       </select>
       {/* <div>

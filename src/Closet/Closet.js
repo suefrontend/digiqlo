@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import { StyledH2 } from '../styles/Heading';
+import { StyledPagination } from '../styles/Pagination';
 import { Flex } from '../styles/Container'
 import CardList from '../components/CardList';
 import { SelectContainer } from '../styles/Select'
 import Dropdown from '../components/Dropdown';
+import Pagination from '../components/Pagination';
 
-const Closet = ({clothes, selected, onSelectedChange}) => {
+const Closet = ({clothes, selectedCategory, defaultValue, onSelectedChange, loading, postsPerPage, paginate,totalPosts}) => {
 
   return (
     <div>
@@ -14,14 +16,26 @@ const Closet = ({clothes, selected, onSelectedChange}) => {
         <Dropdown
           clothes={clothes}
           onSelectedChange={onSelectedChange}
+          selectedCategory={selectedCategory}
+          defaultValue={defaultValue}
         />
-        <span>Total: 102</span>
+        <span>Total: {clothes.length}</span>
       </Flex>
 
       <CardList
         clothes={clothes}
-        selected={selected}
+        selectedCategory={selectedCategory}
+        loading={loading}
       />
+      <nav>
+      <StyledPagination>
+        <Pagination
+          postsPerPage={postsPerPage}
+          totalPosts={totalPosts}
+          paginate={paginate}
+        />
+      </StyledPagination>
+      </nav>
     </div>
   )
 }

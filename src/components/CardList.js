@@ -2,20 +2,37 @@ import React, { useState } from 'react';
 import { StyledCardList } from '../styles/Card';
 import CardItem from './CardItem';
 
-const CardList = ({ clothes, selected }) => {
-  // const [selectedCategory, setSelectedCategory] = useState(() => clothes.filter(el => console.log("el", el)));
-  // console.log("selectedCategory", selectedCategory)
+const CardList = ({ clothes, selectedCategory, loading }) => {
 
-  const selectedCategory = clothes.filter(el => el.category === selected);
-  // console.log(selectedCategory, selected);
+  const category = clothes.filter(el => el.category === selectedCategory);
 
-  const renderedList = selectedCategory.map(cloth => {
+  const renderAllItems = clothes.map(cloth => {
+    return (
+      <CardItem cloth={cloth} />
+    )
+  })
+
+  const renderedList = category.map(cloth => {
     return (
       <CardItem cloth={cloth} />
     )
   });
 
+  if(loading) {
+    return <h2>Loading...</h2>
+  }
+
+if(selectedCategory === '') {
+  return  (
+    <>
+    <StyledCardList>{renderAllItems}</StyledCardList>
+    </>
+  )
+} else {
   return <StyledCardList>{renderedList}</StyledCardList>
+}
+
+
 }
 
 export default CardList;

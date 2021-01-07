@@ -16,37 +16,57 @@ import firebase from '../firebase/firestore'
 const Main = () => {
 
   const [clothes, setClothes] = useState([]);
-  const [selected, setSelected] = useState('');
+  const [defaultValue, setDefaultValue] = useState('All Items');
+  const [selectedCategory, setSelectedCategory] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage] = useState(10);
 
   const onSelectedChange = (e) => {
-    console.log("What's been passed", e);
-    setSelected(e);
+    setSelectedCategory(e);
   }
 
   useEffect(() => {
     const db = firebase.firestore();
-    db.collection('closet').get()
-      .then(response => {
-        const closetLists = [];
-        response.forEach(function (doc) {
-          const closetList = {
-            id: doc.id,
-            ...doc.data()
-          }
-          closetLists.push(closetList)
-        })
-        setClothes(closetLists)
-      });
+
+    const fetchData = async () => {
+      setLoading(true);
+
+      const data = await db.collection('closet').get();
+
+      setClothes(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+
+      setLoading(false);
+    };
+
+      fetchData();
   }, []);
+
+  // indexOfLastPost = 現在表示しているページナンバー * 1ページにいくつ表示するか
+  // indexOfLastPost = 3 * 10 (30?)
+  const indexOfLastPost = currentPage * postsPerPage;
+
+  // indexOfLastPost = indexOfLastPost - 1ページにいくつ表示するか
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+
+  // 現在の投稿 = clothesの特定のobject( 最初の投稿のインデックス、最後の投稿のインデックス )
+  const currentPosts = clothes.slice(indexOfFirstPost, indexOfLastPost);
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber)
 
 	return (
     <StyledMain>
       <Switch>
         <Route exact path="/" render={() =>
           <Closet
-            clothes={clothes}
+            clothes={currentPosts}
             onSelectedChange={onSelectedChange}
-            selected={selected}
+            selectedCategory={selectedCategory}
+            defaultValue={defaultValue}
+            loading={loading}
+            postsPerPage={postsPerPage}
+            totalPosts={clothes.length}
+            paginate={paginate}
           /> } />
         <Route exact path="/additem" component={AddItem} />
         <Route exact path="/closet/:id" component={Detail} />
