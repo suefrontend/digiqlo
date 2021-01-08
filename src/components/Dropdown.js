@@ -21,7 +21,7 @@ const Dropdown = ({ clothes, onSelectedChange, defaultValue, selectedCategory })
       <select
         onChange={e => onSelectedChange(e.target.value)}
       >
-        <option key="default" value={defaultValue}>{defaultValue}</option>
+        <option key="default" value={defaultValue}>All Items</option>
 
         {options}
       </select>

@@ -7,7 +7,7 @@ import { SelectContainer } from '../styles/Select'
 import Dropdown from '../components/Dropdown';
 import Pagination from '../components/Pagination';
 
-const Closet = ({clothes, selectedCategory, defaultValue, onSelectedChange, loading, postsPerPage, paginate,totalPosts}) => {
+const Closet = ({clothes, selectedCategory, defaultValue, onSelectedChange, loading, postsPerPage, paginate,totalPosts, setSelectedCategoryClothes}) => {
 
   return (
     <div>
@@ -19,13 +19,16 @@ const Closet = ({clothes, selectedCategory, defaultValue, onSelectedChange, load
           selectedCategory={selectedCategory}
           defaultValue={defaultValue}
         />
-        <span>Total: {clothes.length}</span>
+        {/* clothes.length ではなく、該当カテゴリーのobjects.lengthでないといけない */}
+        {/* <span>Total: {clothes.length}</span> */}
+        <span>Total: {setSelectedCategoryClothes.length}</span>
       </Flex>
 
       <CardList
         clothes={clothes}
         selectedCategory={selectedCategory}
         loading={loading}
+        defaultValue={defaultValue}
       />
       <nav>
       <StyledPagination>

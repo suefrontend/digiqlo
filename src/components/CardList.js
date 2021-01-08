@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { StyledCardList } from '../styles/Card';
 import CardItem from './CardItem';
 
-const CardList = ({ clothes, selectedCategory, loading }) => {
+const CardList = ({ clothes, selectedCategory, loading, defaultValue }) => {
 
   const category = clothes.filter(el => el.category === selectedCategory);
 

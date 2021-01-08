@@ -18,13 +18,19 @@ const Main = () => {
   const [clothes, setClothes] = useState([]);
   const [defaultValue, setDefaultValue] = useState('All Items');
   const [selectedCategory, setSelectedCategory] = useState('');
+  const [selectedCategoryClothes, setSelectedCategoryClothes] = useState([]);
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(10);
 
   const onSelectedChange = (e) => {
     setSelectedCategory(e);
+    const category = clothes.filter(el => el.category === selectedCategory);
+    console.log("category", category);
+    setSelectedCategoryClothes(category)
+    console.log("selectedCategoryClothes", selectedCategoryClothes);
   }
+
 
   useEffect(() => {
     const db = firebase.firestore();
@@ -67,6 +73,7 @@ const Main = () => {
             postsPerPage={postsPerPage}
             totalPosts={clothes.length}
             paginate={paginate}
+            setSelectedCategoryClothes={setSelectedCategoryClothes}
           /> } />
         <Route exact path="/additem" component={AddItem} />
         <Route exact path="/closet/:id" component={Detail} />
