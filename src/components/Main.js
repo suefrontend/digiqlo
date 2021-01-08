@@ -17,18 +17,20 @@ const Main = () => {
 
   const [clothes, setClothes] = useState([]);
   const [defaultValue, setDefaultValue] = useState('All Items');
+  const [category, setCategory] = useState('');
+  const [filteredClothes, setFilteredClothes] = useState([]);
+
   const [selectedCategory, setSelectedCategory] = useState('');
-  const [selectedCategoryClothes, setSelectedCategoryClothes] = useState([]);
+  const [selectedCategoryClothes, setSelectedCategoryClothes] = useState();
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(10);
 
+  const filtering = clothes.filter(el => el.category === category);
+
   const onSelectedChange = (e) => {
-    setSelectedCategory(e);
-    const category = clothes.filter(el => el.category === selectedCategory);
-    console.log("category", category);
-    setSelectedCategoryClothes(category)
-    console.log("selectedCategoryClothes", selectedCategoryClothes);
+    setCategory(e);
+    setFilteredClothes(filtering);
   }
 
 
@@ -74,6 +76,8 @@ const Main = () => {
             totalPosts={clothes.length}
             paginate={paginate}
             setSelectedCategoryClothes={setSelectedCategoryClothes}
+            category={category}
+            filteredClothes={filteredClothes}
           /> } />
         <Route exact path="/additem" component={AddItem} />
         <Route exact path="/closet/:id" component={Detail} />

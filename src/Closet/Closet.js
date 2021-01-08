@@ -7,7 +7,7 @@ import { SelectContainer } from '../styles/Select'
 import Dropdown from '../components/Dropdown';
 import Pagination from '../components/Pagination';
 
-const Closet = ({clothes, selectedCategory, defaultValue, onSelectedChange, loading, postsPerPage, paginate,totalPosts, setSelectedCategoryClothes}) => {
+const Closet = ({clothes, selectedCategory, defaultValue, onSelectedChange, loading, category, filteredClothes, postsPerPage, paginate,totalPosts, setSelectedCategoryClothes}) => {
 
   return (
     <div>
@@ -17,6 +17,7 @@ const Closet = ({clothes, selectedCategory, defaultValue, onSelectedChange, load
           clothes={clothes}
           onSelectedChange={onSelectedChange}
           selectedCategory={selectedCategory}
+          category={category}
           defaultValue={defaultValue}
         />
         {/* clothes.length ではなく、該当カテゴリーのobjects.lengthでないといけない */}
@@ -29,6 +30,7 @@ const Closet = ({clothes, selectedCategory, defaultValue, onSelectedChange, load
         selectedCategory={selectedCategory}
         loading={loading}
         defaultValue={defaultValue}
+        filteredClothes={filteredClothes}
       />
       <nav>
       <StyledPagination>
