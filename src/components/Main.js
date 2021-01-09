@@ -17,22 +17,19 @@ const Main = () => {
 
   const [clothes, setClothes] = useState([]);
   const [defaultValue, setDefaultValue] = useState('All Items');
-  const [category, setCategory] = useState('');
+  const [category, setCategory] = useState('All Items');
   const [filteredClothes, setFilteredClothes] = useState([]);
 
   const [selectedCategory, setSelectedCategory] = useState('');
   const [selectedCategoryClothes, setSelectedCategoryClothes] = useState();
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage] = useState(10);
-
-  const filtering = clothes.filter(el => el.category === category);
+  const [postsPerPage] = useState(5);
 
   const onSelectedChange = (e) => {
-    setCategory(e);
-    setFilteredClothes(filtering);
+      setCategory(e);
+      setFilteredClothes(clothes.filter(el => el.category === e));
   }
-
 
   useEffect(() => {
     const db = firebase.firestore();
@@ -54,29 +51,44 @@ const Main = () => {
   // indexOfLastPost = 3 * 10 (30?)
   const indexOfLastPost = currentPage * postsPerPage;
 
-  // indexOfLastPost = indexOfLastPost - 1ページにいくつ表示するか
+  // // indexOfLastPost = indexOfLastPost - 1ページにいくつ表示するか
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
 
-  // 現在の投稿 = clothesの特定のobject( 最初の投稿のインデックス、最後の投稿のインデックス )
-  const currentPosts = clothes.slice(indexOfFirstPost, indexOfLastPost);
+  // // 現在の投稿 = clothesの特定のobject( 最初の投稿のインデックス、最後の投稿のインデックス )
+  let currentPosts;
 
-  const paginate = (pageNumber) => setCurrentPage(pageNumber)
+  if(category === "All Items") {
+    currentPosts = clothes.slice(indexOfFirstPost, indexOfLastPost);
+  } else {
+    currentPosts = filteredClothes.slice(indexOfFirstPost, indexOfLastPost);
+  }
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
+  let totalPostsByCategory;
+
+  if(category === 'All Items') {
+    totalPostsByCategory = clothes.length;
+  } else {
+    totalPostsByCategory = filteredClothes.length
+  }
 
 	return (
     <StyledMain>
       <Switch>
         <Route exact path="/" render={() =>
           <Closet
-            clothes={currentPosts}
+            // clothes={currentPosts}
+            clothes={clothes}
             onSelectedChange={onSelectedChange}
             selectedCategory={selectedCategory}
             defaultValue={defaultValue}
             loading={loading}
             postsPerPage={postsPerPage}
-            totalPosts={clothes.length}
+            totalPosts={totalPostsByCategory}
             paginate={paginate}
             setSelectedCategoryClothes={setSelectedCategoryClothes}
-            category={category}
+            cat={category}
             filteredClothes={filteredClothes}
           /> } />
         <Route exact path="/additem" component={AddItem} />

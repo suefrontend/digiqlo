@@ -4,10 +4,13 @@ import { Link } from 'react-router-dom';
 const Pagination = ({ postsPerPage, totalPosts, paginate }) => {
   const pageNumbers = [];
 
-  for (let i = 1; i <= Math.ceil(totalPosts / postsPerPage); i++) {
-    pageNumbers.push(i);
-  }
+  if(totalPosts > postsPerPage) {
 
+    for (let i = 1; i <= Math.ceil(totalPosts / postsPerPage); i++) {
+      pageNumbers.push(i);
+    }
+  }
+console.log("totalPosts", totalPosts);
   return (
     <>
       {pageNumbers.map(number => (

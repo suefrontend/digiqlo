@@ -5,7 +5,7 @@ import { StyledCard } from '../styles/Card';
 const CardItem = ({ cloth }) => {
 
   return (
-    <StyledCard>
+    <StyledCard key={cloth.id}>
       <div>
         <Link to={`/closet/${cloth.id}`}><img src={cloth.image} alt={cloth.label} /></Link>
       </div>
