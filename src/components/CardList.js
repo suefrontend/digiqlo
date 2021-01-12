@@ -2,16 +2,10 @@ import React, { useState } from 'react';
 import { StyledCardList } from '../styles/Card';
 import CardItem from './CardItem';
 
-const CardList = ({ clothes, selectedCategory, loading, defaultValue, filteredClothes, cat,currentPosts }) => {
+const CardList = ({ clothes, selectedCategory, loading, cat, currentPosts }) => {
 
   const category = clothes.filter(el => el.category === selectedCategory);
   console.log("currentPosts", currentPosts);
-
-  const renderAllItems = currentPosts.map(cloth => {
-    return (
-      <CardItem cloth={cloth} />
-    )
-  })
 
   const renderedList = currentPosts.map(cloth => {
     return (
@@ -26,13 +20,10 @@ const CardList = ({ clothes, selectedCategory, loading, defaultValue, filteredCl
   if(cat === "All Items") {
     return  (
       <>
-      <StyledCardList>{renderAllItems}</StyledCardList>
+      <StyledCardList>{renderedList}</StyledCardList>
       </>
     )
-  } else {
-    return <StyledCardList>{renderedList}</StyledCardList>
   }
-
 
 }
 
