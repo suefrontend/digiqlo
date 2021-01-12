@@ -2,17 +2,18 @@ import React, { useState } from 'react';
 import { StyledCardList } from '../styles/Card';
 import CardItem from './CardItem';
 
-const CardList = ({ clothes, selectedCategory, loading, defaultValue, filteredClothes, cat }) => {
+const CardList = ({ clothes, selectedCategory, loading, defaultValue, filteredClothes, cat,currentPosts }) => {
 
   const category = clothes.filter(el => el.category === selectedCategory);
+  console.log("currentPosts", currentPosts);
 
-  const renderAllItems = clothes.map(cloth => {
+  const renderAllItems = currentPosts.map(cloth => {
     return (
       <CardItem cloth={cloth} />
     )
   })
 
-  const renderedList = filteredClothes.map(cloth => {
+  const renderedList = currentPosts.map(cloth => {
     return (
       <CardItem cloth={cloth} />
     )

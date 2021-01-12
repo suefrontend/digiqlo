@@ -9,9 +9,12 @@ export const StyledPagination = styled.ul`
 
   & {
     li {
-      margin-right: 10px;
       border: 1px solid #ccc;
+      margin-right: 10px;
       padding: 10px;
+    }
+    li.active {
+      border: none;
     }
   }
 

@@ -19,16 +19,20 @@ const Main = () => {
   const [defaultValue, setDefaultValue] = useState('All Items');
   const [category, setCategory] = useState('All Items');
   const [filteredClothes, setFilteredClothes] = useState([]);
+  const [active, setActive] = useState('');
 
   const [selectedCategory, setSelectedCategory] = useState('');
   const [selectedCategoryClothes, setSelectedCategoryClothes] = useState();
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(5);
+  const [activeLink, setActiveLink] = useState(1);
 
   const onSelectedChange = (e) => {
       setCategory(e);
       setFilteredClothes(clothes.filter(el => el.category === e));
+      setActiveLink(1);
+      console.log("activeLink", activeLink);
   }
 
   useEffect(() => {
@@ -48,10 +52,11 @@ const Main = () => {
   }, []);
 
   // indexOfLastPost = 現在表示しているページナンバー * 1ページにいくつ表示するか
-  // indexOfLastPost = 3 * 10 (30?)
+  // 10 = 1 * 10
   const indexOfLastPost = currentPage * postsPerPage;
 
   // // indexOfLastPost = indexOfLastPost - 1ページにいくつ表示するか
+  //  0  = 10 - 10;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
 
   // // 現在の投稿 = clothesの特定のobject( 最初の投稿のインデックス、最後の投稿のインデックス )
@@ -62,8 +67,12 @@ const Main = () => {
   } else {
     currentPosts = filteredClothes.slice(indexOfFirstPost, indexOfLastPost);
   }
+  console.log("currentPosts", currentPosts)
 
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+  const paginate = (pageNumber) => {
+    setCurrentPage(pageNumber);
+    setActiveLink(pageNumber)
+  }
 
   let totalPostsByCategory;
 
@@ -78,7 +87,7 @@ const Main = () => {
       <Switch>
         <Route exact path="/" render={() =>
           <Closet
-            // clothes={currentPosts}
+            currentPosts={currentPosts}
             clothes={clothes}
             onSelectedChange={onSelectedChange}
             selectedCategory={selectedCategory}
@@ -90,6 +99,7 @@ const Main = () => {
             setSelectedCategoryClothes={setSelectedCategoryClothes}
             cat={category}
             filteredClothes={filteredClothes}
+            activeLink={activeLink}
           /> } />
         <Route exact path="/additem" component={AddItem} />
         <Route exact path="/closet/:id" component={Detail} />

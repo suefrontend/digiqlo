@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-const Pagination = ({ postsPerPage, totalPosts, paginate }) => {
+const Pagination = ({ postsPerPage, totalPosts, paginate, activeLink }) => {
+
+
+
   const pageNumbers = [];
 
   if(totalPosts > postsPerPage) {
@@ -10,16 +13,46 @@ const Pagination = ({ postsPerPage, totalPosts, paginate }) => {
       pageNumbers.push(i);
     }
   }
-console.log("totalPosts", totalPosts);
+
+  const renderPagination = pageNumbers.map(number => {
+
+
+    if(activeLink === number) {
+      return (
+        <li
+          key={number}
+          onClick={() => paginate(number)}
+          className="active"
+        >
+            {number}
+        </li>
+        )
+    } else {
+      return (
+        <li
+          key={number}
+          onClick={() => paginate(number)}
+        >
+          <Link  href='!#'>
+            {number}
+          </Link>
+        </li>
+        )
+    }
+
+
+  })
+
   return (
     <>
-      {pageNumbers.map(number => (
+      {/* {pageNumbers.map(number => (
         <li key={number} className='page-item'>
           <Link onClick={() => paginate(number)} href='!#' className='page-link'>
             {number}
           </Link>
         </li>
-      ))}
+      ))} */}
+      {renderPagination}
     </>
   );
 };

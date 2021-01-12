@@ -7,7 +7,7 @@ import { SelectContainer } from '../styles/Select'
 import Dropdown from '../components/Dropdown';
 import Pagination from '../components/Pagination';
 
-const Closet = ({clothes, selectedCategory, defaultValue, onSelectedChange, loading, cat, filteredClothes, postsPerPage, paginate,totalPosts, setSelectedCategoryClothes}) => {
+const Closet = ({clothes, selectedCategory, defaultValue, onSelectedChange, loading, cat, currentPosts, activeLink, filteredClothes, postsPerPage, paginate,totalPosts, setSelectedCategoryClothes}) => {
 
   let totalIems;
   if (cat === 'All Items') {
@@ -34,6 +34,7 @@ const Closet = ({clothes, selectedCategory, defaultValue, onSelectedChange, load
 
       <CardList
         clothes={clothes}
+        currentPosts={currentPosts}
         selectedCategory={selectedCategory}
         loading={loading}
         defaultValue={defaultValue}
@@ -47,6 +48,7 @@ const Closet = ({clothes, selectedCategory, defaultValue, onSelectedChange, load
           postsPerPage={postsPerPage}
           totalPosts={totalPosts}
           paginate={paginate}
+          activeLink={activeLink}
         />
       </StyledPagination>
       </nav>
