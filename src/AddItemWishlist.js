@@ -5,7 +5,7 @@ import firebase, { storage } from './firebase/firestore'
 import { useForm } from 'react-hook-form'
 import { useHistory } from "react-router-dom";
 
-const AddItem = () => {
+const AddItemWishlist = () => {
 
 
   const { register, handleSubmit, errors } = useForm();
@@ -25,7 +25,7 @@ const AddItem = () => {
       console.log("fileRef", fileRef)
     })
 
-    firebase.firestore().collection('closet').add({
+    firebase.firestore().collection('wishlist').add({
         // image: fileRef,
         image: `https://firebasestorage.googleapis.com/v0/b/digiqlo-554a3.appspot.com/o/closet%2F${data.image[0].name}?alt=media`,
         label: data.label,
@@ -40,7 +40,7 @@ const AddItem = () => {
     })
 
 
-    history.push('/');
+    history.push('/wishlist');
 
 
   }
@@ -71,7 +71,7 @@ const AddItem = () => {
       {/* <input type="file" onChange={onFileChange} /> */}
       {/* <button onClick={onUpload}>Create Album</button> */}
 
-      <StyledH2>Add Item</StyledH2>
+      <StyledH2>Add Item to Wishlist</StyledH2>
 
       <form onSubmit={handleSubmit(onSubmit)}>
       {/* <form> */}
@@ -329,4 +329,4 @@ const AddItem = () => {
   )
 }
 
-export default AddItem;
+export default AddItemWishlist;

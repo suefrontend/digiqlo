@@ -4,6 +4,10 @@ import Reports from '../Reports/Reports';
 import Organize from '../Organize/Organize';
 import Wishlist from '../Wishlist/Wishlist';
 import Detail from '../Detail';
+import WishlistDetail from '../WishlistDetail';
+import Edit from '../Edit';
+import WishlistEdit from '../WishlistEdit';
+import AddItemWishlist from '../AddItemWishlist';
 import AddItem from '../AddItem';
 import {
 	Switch,
@@ -15,6 +19,7 @@ import firebase from '../firebase/firestore'
 const Main = () => {
 
   const [clothes, setClothes] = useState([]);
+  const [wishlist, setWishlist] = useState([]);
   const [defaultValue] = useState('All Items');
   const [category, setCategory] = useState('All Items');
 
@@ -36,6 +41,10 @@ const Main = () => {
 
   // // const [currentPosts2, setCurrentPosts2] = useState(() => listOf10MillionItems.filter())
   // const [currentPosts2, setCurrentPosts2] = useState(filteredClothes.slice(indexOfFirstPost, postsPerPage));
+
+
+
+
 
 
 
@@ -63,6 +72,9 @@ const Main = () => {
   //     setActiveLink(1);
   // }, [clothes])
 
+// const [num, setNums] = useState()
+const [num, setNums] = useState([])
+const [test, setTest] = useState([])
 
 
   useEffect(() => {
@@ -72,16 +84,69 @@ const Main = () => {
     const fetchData = async () => {
       setLoading(true);
 
-      const data = await db.collection('closet').get();
+      const closetData = await db.collection('closet').orderBy("createdAt", "desc").get();
+      const wishlistData = await db.collection('wishlist').get();
+      const testData = await db.collection('test').get();
 
-      setClothes(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+      setClothes(closetData.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+      setTest(testData.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+
       setFilteredClothes(clothes)
+      setWishlist(wishlistData.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+
+      // setNums(clothes)
+      setNums(closetData.docs.map((doc) => ({ ...doc.data(), id: doc.id })).reduce((result, user) => {
+
+            (result[user.category] || (result[user.category] = [])).push(user);
+            return result;
+          }, {}))
 
       setLoading(false);
     };
 
       fetchData();
   }, []);
+
+  const [limit, setLimit] = useState([])
+  // console.log(createdAt);
+
+
+
+  useEffect(() => {
+
+    const db = firebase.firestore();
+
+    // const fetchData = async () => {
+
+      const limitData = db.collection('limit').doc('limit');
+
+    //   setLimit(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+
+
+
+    // };
+
+    //   fetchData();
+
+
+    limitData.get().then(function(doc) {
+      if (doc.exists) {
+          // console.log("Document data:", );
+          setLimit(doc.data());
+
+      } else {
+          // doc.data() will be undefined in this case
+          console.log("No such document!");
+      }
+  }).catch(function(error) {
+      console.log("Error getting document:", error);
+  });
+
+
+  }, []);
+
+
+
   const [filteredClothes, setFilteredClothes] = useState(clothes);
 
 
@@ -114,63 +179,12 @@ const Main = () => {
 }
 
 
-
-  // indexOfLastPost = 現在表示しているページナンバー * 1ページにいくつ表示するか
-  // 10 = 1 * 10
-
-
-  // // indexOfLastPost = indexOfLastPost - 1ページにいくつ表示するか
-  //  0  = 10 - 10;
-
-  // console.log("indexOfFirstPost", indexOfFirstPost)
-  // console.log("indexOfLastPost", indexOfLastPost)
-
-
-  // const [currentPosts1, setCurrentPosts1] = useState(clothes.slice(indexOfFirstPost, postsPerPage))
-  // clothes.slice(indexOfFirstPost, postsPerPage)
-
-
-  // const [currentPosts2, setCurrentPosts2] = useState(() => listOf10MillionItems.filter())
-  // const [currentPosts2, setCurrentPosts2] = useState(filteredClothes.slice(indexOfFirstPost, postsPerPage));
-
-
-
-
-
-
   const paginate = (e) => {
     setCurrentPage(e);
     setActiveLink(e);
-
-console.log("currentPage", currentPage)
-
-
-
-
   }
 
-  // // 現在の投稿 = clothesの特定のobject( 最初の投稿のインデックス、最後の投稿のインデックス )
-  //let currentPosts;
-  // console.log("indexOfLastPost",indexOfLastPost,  currentPage, "postsPerPage", clothes.length / postsPerPage);
 
-  //if(category === "All Items") {
-
-
-    // setCurrentPosts1(clothes.slice(indexOfFirstPost, postsPerPage));
-    // console.log("currentPosts", currentPosts)
-
-    //currentPosts = test2.map(el => el)
-  //}
-
-
-  //if(category !== "All Items") {
-    // console.log("aa", filteredClothes.filter((e, i) => i <= currentPage * 5 - 1 ));
-    // currentPosts = filteredClothes.filter((e, i) => i <= indexOfLastPost )
-    //setCurrentPosts2(filteredClothes.slice(indexOfFirstPost, postsPerPage));
-    // console.log("currentPosts", currentPosts)
-  //}
-
-  // useEffect(category)
 
   let totalPostsByCategory;
 
@@ -180,9 +194,13 @@ console.log("currentPage", currentPage)
     totalPostsByCategory = filteredClothes.length
   }
 
-  const itemID = (e) => {
-    console.log("Item ID", e);
-  }
+
+
+  const numShoes = clothes.reduce(function(n, cloth) {
+    return n + (cloth.category === 'shoes');
+  }, 0);
+
+
 
 	return (
     <StyledMain>
@@ -213,12 +231,28 @@ console.log("currentPage", currentPage)
             clothes={clothes}
             // currentPosts1={currentPosts1}
             // currentPosts2={currentPosts2}
-            itemID={itemID}
+
           /> } />
         <Route exact path="/reports" component={Reports} />
-        <Route exact path="/organize" component={Organize} />
-        <Route exact path="/wishlist" component={Wishlist} />
-        <Route exact path="/wishlist/:id" component={Detail} />
+        <Route exact path="/organize" render={() =>
+          <Organize
+            clothes={clothes}
+            numShoes={numShoes}
+            limit={limit}
+            />
+          } />
+        <Route exact path="/wishlist" render={() =>
+          <Wishlist
+            wishlist={wishlist}
+            clothes={clothes}
+            num={num}
+            limit={limit}
+          />
+        } />
+        <Route exact path="/wishlist/:id" component={WishlistDetail} />
+        <Route exact path="/edit/:id" component={Edit} />
+        <Route exact path="/wishlist/edit/:id" component={WishlistEdit} />
+        <Route exact path="/additemwishlist" component={AddItemWishlist} />
       </Switch>
     </StyledMain>
   )

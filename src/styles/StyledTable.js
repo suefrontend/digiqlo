@@ -36,7 +36,7 @@ ${props => props.size === "half" ? tw`text-green-400` : tw`w-full`}
         ${tw`w-32 text-center`}
       }
       svg {
-        ${tw`opacity-75`}
+        ${tw`opacity-75 w-6 h-6`}
       }
 
     }
