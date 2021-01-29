@@ -8,12 +8,19 @@ import {
 import { useForm } from 'react-hook-form'
 
 
-const Edit = ({currentDoc, setEditing}) => {
+const Edit = ({currentUser, setEditing }) => {
   const [item, setItem] = useState({})
   const [error, setError] = useState();
   const { id } = useParams();
   const history = useHistory();
   const { register, handleSubmit, errors } = useForm();
+
+
+  const [user, setUser] = useState(currentUser);
+
+
+
+
   // const [clothItem, setClothItem] = useState({
   //   label: item,
   //   color: "COLOR",
@@ -60,42 +67,40 @@ const [newTest, setNewTest] = useState(initialFormState);
 
   const onSubmit = data => {
 
+    const storageRef = firebase.storage().ref();
+    // console.log("data", data.image[0].name);
+    console.log("data", data);
+
+    const fileRef = storageRef.child(`closet/${data.image[0].name}`);
+    fileRef.put(data.image[0]).then(() => {
+      console.log("Uploaded a file")
+      console.log("fileRef", fileRef)
+    })
+
+
     console.log("Update data like this: ", data);
-    console.log("test", test);
+    // console.log("test", test);
+
+    firebase.firestore().collection("closet").doc(id).update({
+      id: user.id,
+      // image: user.image,
+      image: `https://firebasestorage.googleapis.com/v0/b/digiqlo-554a3.appspot.com/o/closet%2F${data.image[0].name}?alt=media`,
+      label: user.label,
+      color: user.color,
+      year: user.year,
+      brand: user.brand,
+      price: user.price,
+      season: user.season,
+      note: user.note
+    });
     setEditing(false);
-
   }
-
-
-  const [test, setTest] = useState({
-    label: 'LABEL',
-    color: 'COLOR',
-    year: 'YEAR',
-    brand: 'BRAND',
-    price: '200',
-    season: 'winter',
-    note: 'cool'
-   });
-
 
   const handleChange = (event) => {
 
-    event.preventDefault();
-
-    //const { label, color, year, brand, price, season, note } = event.target;
-
-    // console.log("target", label, color, year)
-
     const { name, value } = event.target
 
-    //console.log("target.value", event.target.value)
-    //setClothItem({ ...clothItem, [name]: value })
-
-    setTest({...test,  [name]: value})
-
-    //console.log("clothItem", clothItem)
-    //console.log("test", test)
-
+    setUser({...user,  [name]: value})
 
   }
 
@@ -108,8 +113,18 @@ const [newTest, setNewTest] = useState(initialFormState);
 
         <StyledContainerNoBg>
           <div>
-            <img src={item.image} alt="stew" class="" />
-
+            <img
+              src={user.image}
+              alt={user.label}
+              ref={register}
+              onChange={handleChange}
+            />
+            <input
+                type="file"
+                name="image"
+                ref={register}
+                onChange={handleChange}
+              />
           </div>
 
           <div>
@@ -117,7 +132,7 @@ const [newTest, setNewTest] = useState(initialFormState);
               <input
                 type="text"
                 name="label"
-                value={currentDoc.label}
+                value={user.label}
                 ref={register}
                 onChange={handleChange}
               />
@@ -128,7 +143,7 @@ const [newTest, setNewTest] = useState(initialFormState);
                 <td>Category</td>
                 <td>
                 <select name="category" ref={register} onChange={handleChange}>
-                  <option value={currentDoc.category} selected>{currentDoc.category}</option>
+                  <option value={user.category} selected>{user.category}</option>
                 <option value="shirts">Shirts</option>
                 <option value="bottoms">Bottoms</option>
                 <option value="outerwears">Outerwears</option>
@@ -150,7 +165,7 @@ const [newTest, setNewTest] = useState(initialFormState);
                   name="color"
                   ref={register}
                   onChange={handleChange}>
-                <option value={currentDoc.color} selected>{currentDoc.color}</option>
+                <option value={user.color} selected>{user.color}</option>
                 <option value="black">Black</option>
                 <option value="white">White</option>
                 <option value="gray">Gray</option>
@@ -176,7 +191,7 @@ const [newTest, setNewTest] = useState(initialFormState);
                 <td><input
                   type="text"
                   name="year"
-                  value={currentDoc.year}
+                  value={user.year}
                   ref={register}
                   onChange={handleChange}
                 />
@@ -188,7 +203,7 @@ const [newTest, setNewTest] = useState(initialFormState);
                   <input
                     type="text"
                     name="brand"
-                    value={currentDoc.brand}
+                    value={user.brand}
                     ref={register}
                     onChange={handleChange}
                   />
@@ -200,7 +215,7 @@ const [newTest, setNewTest] = useState(initialFormState);
                   <input
                     type="text"
                     name="price"
-                    value={currentDoc.price}
+                    value={user.price}
                     ref={register}
                     onChange={handleChange}
                   />
@@ -208,7 +223,7 @@ const [newTest, setNewTest] = useState(initialFormState);
               </tr>
               {/* <tr>
                 <td>Sleeve</td>
-                <td>{currentDoc.sleeve}</td>
+                <td>{user.sleeve}</td>
               </tr> */}
               <tr>
                 <td>Season</td>
@@ -218,7 +233,7 @@ const [newTest, setNewTest] = useState(initialFormState);
                   ref={register}
                   onChange={handleChange}
                 >
-                <option value={currentDoc.season} selected>{currentDoc.season}</option>
+                <option value={user.season} selected>{user.season}</option>
                 <option value="spring">Spring</option>
                 <option value="summer">Summer</option>
                 <option value="fall">Fall</option>
@@ -231,11 +246,11 @@ const [newTest, setNewTest] = useState(initialFormState);
                 <td>
                   <textarea
                     name="note"
-                    value={currentDoc.note}
+                    value={user.note}
                     ref={register}
                     onChange={handleChange}
                   >
-                  {currentDoc.note}</textarea>
+                  {user.note}</textarea>
                   </td>
               </tr>
             </StyledDetailTable>

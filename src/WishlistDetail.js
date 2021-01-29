@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import WishlistEdit from './WishlistEdit';
 import { StyledContainerNoBg, StyledContainerMain } from './styles/StyledContainer';
 import { StyledTable, StyledDetailTable } from './styles/StyledTable'
 import firebase from './firebase/firestore'
@@ -38,13 +39,66 @@ const WishlistDetail = () => {
     history.push('/wishlist');
   }
 
+  const initialFormState = {
+    id: null,
+    image: '',
+    label: '',
+    color: '',
+    year: '',
+    brand: '',
+    price: '',
+    season: '',
+    note: ''
+   }
+  const [editing, setEditing] = useState(false);
+  const [currentUser, setCurrentUser] = useState(initialFormState)
+
+  const editDocument = document => {
+    setEditing(true)
+    setCurrentUser({
+    // id: document.id,
+    // docTitle: document.docTitle,
+    // description: document.description,
+    // publisher : document.publisher
+    id: id,
+    image: item.image,
+    category: item.category,
+    label: item.label,
+      color: item.color,
+      year: item.year,
+      brand: item.brand,
+      price: item.price,
+      season: item.season,
+      note: item.note
+    })
+    }
+
+
+  const updateUser = (id, updateUser) => {
+    setEditing(false);
+    //setUsers(users.map(user => (user.id === id ? updateUser : user)));
+  };
+
   return (
     <>
 
       <StyledContainerMain>
+
+      {editing ? (
+        <WishlistEdit
+                editing={editing}
+                setEditing={setEditing}
+                currentUser={currentUser}
+                updateUser={updateUser}
+                currentUser={currentUser}
+              />
+
+      ) : (
+
+
         <StyledContainerNoBg>
           <div>
-            <img src={item.image} alt="stew" class="" />
+          <img src={item.image} alt={item.label} class="" />
 
           </div>
 
@@ -82,17 +136,15 @@ const WishlistDetail = () => {
               </tr>
             </StyledDetailTable>
 
-            <Link to={`/edit/${id}`}>
-              <button>
-                Update
-              </button>
-            </Link>
+            <button onClick={editDocument}>
+            Update
+          </button>
             <button onClick={deleteItem}>Delete</button>
 
           </div>
 
         </StyledContainerNoBg>
-
+      )}
       </StyledContainerMain>
     </>
   )

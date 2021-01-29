@@ -80,6 +80,7 @@ const Detail = () => {
 
   const initialFormState = {
     id: null,
+    image: '',
     label: '',
     color: '',
     year: '',
@@ -89,16 +90,17 @@ const Detail = () => {
     note: ''
    }
   const [editing, setEditing] = useState(false);
-  const [currentDoc, setCurrentDoc] = useState(initialFormState)
+  const [currentUser, setCurrentUser] = useState(initialFormState)
 
   const editDocument = document => {
     setEditing(true)
-    setCurrentDoc({
+    setCurrentUser({
     // id: document.id,
     // docTitle: document.docTitle,
     // description: document.description,
     // publisher : document.publisher
     id: id,
+    image: item.image,
     category: item.category,
     label: item.label,
       color: item.color,
@@ -116,7 +118,7 @@ const Detail = () => {
       //setUsers(users.map(user => (user.id === id ? updateUser : user)));
     };
 
-    console.log("currentDoc", currentDoc)
+    console.log("currentUser", currentUser)
   return (
     <>
 
@@ -127,9 +129,9 @@ const Detail = () => {
             <Edit
                 editing={editing}
                 setEditing={setEditing}
-                // currentUser={currentUser}
+                currentUser={currentUser}
                 updateUser={updateUser}
-                currentDoc={currentDoc}
+                currentUser={currentUser}
               />
 
 
@@ -141,7 +143,7 @@ const Detail = () => {
 
 
           <div>
-            <img src={item.image} alt="stew" class="" />
+            <img src={item.image} alt={item.label} class="" />
 
           </div>
 
