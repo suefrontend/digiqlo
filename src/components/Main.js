@@ -30,6 +30,13 @@ const Main = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(5);
 
+  const [yearProp, setYearProp] = useState({})
+  const [colorProp, setColorProp] = useState({});
+  const [priceProp, setPriceProp] = useState({});
+
+
+  const [testPrice, setTestPrice] = useState({})
+
 // console.log("filteredClothes", filteredClothes)
   //const indexOfFirstPost = (currentPage - 1) * postsPerPage;
   // const [indexOfFirstPost, setIndexOfFirstPost] = useState((currentPage - 1) * postsPerPage);
@@ -58,10 +65,6 @@ const Main = () => {
 
   const [currentPostsTest, setCurrentPostsTest] = useState();
 
-
-
-
-
   //const indexOfLastPost = indexOfFirstPost + postsPerPage;
   //const [indexOfLastPost, setIndexOfLastPost] = useState(indexOfFirstPost + postsPerPage);
 // const [limited, setLimited] = useState(clothes.slice(indexOfFirstPost, postsPerPage))
@@ -75,7 +78,8 @@ const Main = () => {
 // const [num, setNums] = useState()
 const [num, setNums] = useState([])
 const [test, setTest] = useState([])
-
+const [season, setSeason] = useState([])
+const [seasonProp, setSeasonProp] = useState([]);
 
   useEffect(() => {
 
@@ -94,6 +98,41 @@ const [test, setTest] = useState([])
       setFilteredClothes(clothes)
       setWishlist(wishlistData.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
 
+
+
+      setSeason(Array.from(new Set((closetData.docs.map((doc) => ({ ...doc.data(), id: doc.id }))).map(el => el.season))))
+
+
+      setSeasonProp(closetData.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
+
+      .reduce(function(r, a) {
+        // (r[user.season] || (r[user.season] = [])).push(a);
+        r[a.season] = (r[a.season] || 0) + 1;
+        return r;
+      }, {}))
+
+      setColorProp(closetData.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
+
+      .reduce(function(r, a) {
+        // (r[user.season] || (r[user.season] = [])).push(a);
+        r[a.color] = (r[a.color] || 0) + 1;
+        return r;
+      }, {}))
+
+      setYearProp(closetData.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
+
+      .reduce(function(r, a) {
+        // (r[user.season] || (r[user.season] = [])).push(a);
+        r[a.year] = (r[a.year] || 0) + 1;
+        return r;
+      }, {}))
+
+
+
+
+
+
+
       // setNums(clothes)
       setNums(closetData.docs.map((doc) => ({ ...doc.data(), id: doc.id })).reduce((result, user) => {
 
@@ -111,6 +150,51 @@ const [test, setTest] = useState([])
   // console.log(createdAt);
 
 
+  useEffect(() => {
+    const db = firebase.firestore();
+
+    const fetchData2 = async () => {
+
+    // const db = await ;
+      // var testObj = await firebase.firestore().collection('closet')
+      // .where("category", "==", "shoes");
+
+
+
+
+      // console.log("testObj", testObj)
+
+      const yearDataTest = await db.collection('closet').where("year", "==", 2017).get();
+
+      setTestPrice(yearDataTest.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+
+
+  //   var citiesRef = await db.collection('closet')
+  //   .get().then(function(doc) {
+  //     if (doc.exists) {
+  //         // console.log("Document data:", );
+  //         console.log((doc.data()));
+
+  //     } else {
+  //         // doc.data() will be undefined in this case
+  //         console.log("No such document!");
+  //     }
+  // }).catch(function(error) {
+  //     console.log("Error getting document:", error);
+  // });
+
+    // setTestPrice(citiesRef.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
+    // citiesRef.forEach((postDoc) => {
+    //   console.log(postDoc.id, ' => ', JSON.stringify(postDoc.data()))
+    // })
+
+    }
+
+  fetchData2();
+  console.log("testPrice", testPrice)
+  }, [])
+
+  console.log("testPrice", testPrice)
 
   useEffect(() => {
 
@@ -146,7 +230,7 @@ const [test, setTest] = useState([])
   }, []);
 
 
-
+console.log("yearProp", yearProp)
   const [filteredClothes, setFilteredClothes] = useState(clothes);
 
 
@@ -185,7 +269,6 @@ const [test, setTest] = useState([])
   }
 
 
-
   let totalPostsByCategory;
 
   if(category === 'All Items') {
@@ -195,10 +278,44 @@ const [test, setTest] = useState([])
   }
 
 
+console.log("season", season)
 
   const numShoes = clothes.reduce(function(n, cloth) {
     return n + (cloth.category === 'shoes');
   }, 0);
+
+const [topColor, setTopColor] = useState([])
+  // create an array
+var arr = [];
+
+
+// console.log("ttttt", Object.values(colorProp).sort((a, b) => b - a))
+
+// loop through the object and add values to the array
+for (var color in colorProp) {
+  arr.push([color, colorProp[color]]);
+}
+
+arr.sort(function(a, b) {
+  return b[1] - a[1];
+});
+
+// grab the first 10 numbers
+var firstThree = arr.slice(0, 5);
+
+
+
+  // target1.forEach(el => {
+  //   console.log("el", el)
+  // })
+
+
+////
+
+
+
+
+
 
 
 
@@ -233,7 +350,15 @@ const [test, setTest] = useState([])
             // currentPosts2={currentPosts2}
 
           /> } />
-        <Route exact path="/reports" component={Reports} />
+        <Route exact path="/reports" render={() =>
+          <Reports
+            clothes={clothes}
+            season={season}
+            seasonProp={seasonProp}
+            colorProp={colorProp}
+            yearProp={yearProp}
+            />
+          } />
         <Route exact path="/organize" render={() =>
           <Organize
             clothes={clothes}
