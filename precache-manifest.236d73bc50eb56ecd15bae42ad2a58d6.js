@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "a765a174ecf12e499bdf3235b31ebef1",
+    "revision": "803b144d77538dba076649220c0137d5",
     "url": "/digiqlo/index.html"
   },
   {
-    "revision": "f73b3a2dd96b9c38eb82",
+    "revision": "b4b9fdd4a4c9d6624f4c",
     "url": "/digiqlo/static/css/main.6fd25d42.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/digiqlo/static/js/2.91c047b8.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "f73b3a2dd96b9c38eb82",
-    "url": "/digiqlo/static/js/main.fdfd28c7.chunk.js"
+    "revision": "b4b9fdd4a4c9d6624f4c",
+    "url": "/digiqlo/static/js/main.bd853959.chunk.js"
   },
   {
     "revision": "ec67a452d562d5db72be",

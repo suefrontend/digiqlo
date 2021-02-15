@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/digiqlo/precache-manifest.fff5ea3890a419e019691ac43b5667db.js"
+  "/digiqlo/precache-manifest.236d73bc50eb56ecd15bae42ad2a58d6.js"
 );
 
 self.addEventListener('message', (event) => {
