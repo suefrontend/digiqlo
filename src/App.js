@@ -10,6 +10,7 @@ const App = () => {
 		<StyledContainer>
       <Navbar />
       <Main />
+      TEST
     </StyledContainer>
   )
 }

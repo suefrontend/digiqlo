@@ -13,14 +13,6 @@ const Reports = ({clothes, season, seasonProp, colorProp, yearProp}) => {
   const [seasonData, setSeasonData] = useState({});
   const [colorData, setColorData] = useState({});
   const [priceData, setPriceData] = useState({});
-  // const [season, setSeason] = useState(['Spring', 'Summer', 'Fall',
-  // 'Winter', 'All Seasons', 'unknown'])
-  const [test1, setTest1] = useState([])
-
-
-
-  // const test1 = Array.from(new Set(clothes.map(el => el.season)));
-  // console.log("test1", test1)
 
   useEffect(() => {
 
@@ -82,12 +74,7 @@ const Reports = ({clothes, season, seasonProp, colorProp, yearProp}) => {
                 }
               ]
             });
-          // console.log("season", season)
   }, [season, seasonProp, colorProp, yearProp])
-
-  // 理想の形
-  // [2, 41, 1, 32, 2] <- Numbers of clothes by season
-  // [spring, summer, fall, winter, all seasons, not set]
 
   var arr = [];
   for (var color in colorProp) {
@@ -112,64 +99,11 @@ const Reports = ({clothes, season, seasonProp, colorProp, yearProp}) => {
     colorLabelNumberArr.push(t[1])
   })
 
-  // console.log("colorProp", colorProp)
-  // console.log("colorLabelArr", colorLabelArr)
-  // console.log("colorLabelNumberArr", colorLabelNumberArr)
+  const otherColors = Object.values(colorProp).slice(7).reduceRight((prev, curr) => prev + curr, 0);
 
-  // console.log("seasonProp", seasonProp)
-  // console.log("seasonProp['spring']", seasonProp['spring'])
-  // // console.log("seasonProp['spring'].length", seasonProp['spring'].length)
-  // if(seasonProp['spring']){
-  //   console.log('seasonProp.length!!!!!!!!!!!!!!!!!!', seasonProp['spring'].length)
-  //   }
+  const yearArr = Object.values(yearProp).reverse().slice(0, 5);
 
-const otherColors = Object.values(colorProp).slice(7).reduceRight((prev, curr) => prev + curr, 0);
-
-    var yearPropReverse = Object.keys(yearProp).sort().reverse()
-    // console.log("yearProp", yearProp)
-
-
-const yearArr = Object.values(yearProp).reverse().slice(0, 5);
-
-const yearArr2 = Object.keys(yearProp).reverse().slice(0, 5);
-
-// console.log(persons)
-// [ { name: 'Sato', age: 20 },
-//   { name: 'Ito', age: 24 },
-//   { name: 'Kato', age: 31 } ]
-
-// season
-// seasonProp
-const newTest = season.map((season, i) => ({
-  season: season[i],
-  seasonProp: seasonProp[i]
-}))
-// console.log("newTest", newTest)
-// console.log("season", season)
-// console.log("seasonProp", seasonProp)
-// console.log("seasonProp", seasonProp)
-// console.log("seasonProp['spring']", seasonProp['spring'])
-// console.log(seasonProp['spring'].length-1)
-// console.log("seasonProp['spring'].length", seasonProp['spring'].length)
-
-// if(seasonProp) {
-//   console.log(seasonProp['spring'].length)
-// }
-
-
-// console.log("test5", test5)
-
-
-// console.log("categorizeBySeason", categorizeBySeason)
-// console.log("anotherRes", anotherRes)
-
-
-
-
-
-// console.log("No.1-5 Color", t1);
-// console.log("No.1-5 Color", Object.values(colorProp).sort((a, b) => b - a).slice(0, 5))
-// console.log("arr", arr.slice(0, 5))
+  const yearArr2 = Object.keys(yearProp).reverse().slice(0, 5);
 
 
 var combineCategories = function (data) {
@@ -195,43 +129,20 @@ var sorted = yearSort.sort(function IHaveAName(a, b) { // non-anonymous as you o
        : b.year < a.year ? -1 // if b should come later, push a to begin
        : 0;                   // a and b are equal
 });
-console.log("sorted", sorted)
-// console.log("sorted", sorted.slice(0, 5))
 
-// const yearLabel = Object.keys(sorted);
+
 const ta5 = sorted.slice(0, 5).map(el => {
   return el.year;
 })
-console.log("ta5", ta5)
 
 const ta6 = sorted.slice(0, 5).map(el => {
   return el.price;
 })
-console.log("ta6", ta6)
 
 
   return (
   <>
     <StyledH2>Reports</StyledH2>
-
-
-
-    {/* <StyledContainerMiniWrapper>
-      <StyledContainerMini><StyledTypography><span>89</span>Outerwears</StyledTypography></StyledContainerMini>
-      <StyledContainerMini><StyledTypography><span>65</span>Tops</StyledTypography></StyledContainerMini>
-      <StyledContainerMini><StyledTypography><span>-24</span>Shirts</StyledTypography></StyledContainerMini>
-      <StyledContainerMini><StyledTypography><span>89</span>Suits</StyledTypography></StyledContainerMini>
-
-      <StyledContainerMini><StyledTypography><span>89</span>Knitted</StyledTypography></StyledContainerMini>
-      <StyledContainerMini><StyledTypography><span>65</span>Bottoms</StyledTypography></StyledContainerMini>
-      <StyledContainerMini><StyledTypography><span>-24</span>Dresses</StyledTypography></StyledContainerMini>
-      <StyledContainerMini><StyledTypography><span>89</span>Shoes</StyledTypography></StyledContainerMini>
-
-      <StyledContainerMini><StyledTypography><span>89</span>Underwears</StyledTypography></StyledContainerMini>
-      <StyledContainerMini><StyledTypography><span>65</span>Nightwears</StyledTypography></StyledContainerMini>
-      <StyledContainerMini><StyledTypography><span>-24</span>Accessories</StyledTypography></StyledContainerMini>
-      <StyledContainerMini><StyledTypography><span>89</span>Sportswears</StyledTypography></StyledContainerMini>
-    </StyledContainerMiniWrapper> */}
 
     <FlexWrapper>
 

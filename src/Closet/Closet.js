@@ -7,10 +7,10 @@ import { SelectContainer } from '../styles/Select'
 import Dropdown from '../components/Dropdown';
 import Pagination from '../components/Pagination';
 
-const Closet = ({clothes, selectedCategory, defaultValue, onSelectedChange, currentDisplayedItems, currentDisplayedItems2, loading, cat, currentPosts,limited, activeLink, currentPosts1, currentPosts2, filteredClothes, postsPerPage, paginate,totalPosts, setSelectedCategoryClothes}) => {
+const Closet = ({clothes, selectedCategory, defaultValue, onSelectedChange, displayAllItems, displayItemsByCategory, loading, category, limited, activeLink, filteredClothes, postsPerPage, paginate, totalPosts}) => {
 
   let totalIems;
-  if (cat === 'All Items') {
+  if (category === 'All Items') {
     totalIems = clothes.length;
   } else {
     totalIems = filteredClothes.length;
@@ -24,27 +24,19 @@ const Closet = ({clothes, selectedCategory, defaultValue, onSelectedChange, curr
           clothes={clothes}
           onSelectedChange={onSelectedChange}
           selectedCategory={selectedCategory}
-          cat={cat}
+          category={category}
           defaultValue={defaultValue}
         />
-        {/* clothes.length ではなく、該当カテゴリーのobjects.lengthでないといけない */}
-        {/* <span>Total: {clothes.length}</span> */}
         <span>Total: {totalIems}</span>
       </Flex>
 
       <CardList
         clothes={clothes}
-        currentPosts={currentPosts}
-        selectedCategory={selectedCategory}
         loading={loading}
-        defaultValue={defaultValue}
-        filteredClothes={filteredClothes}
-        cat={cat}
-        postsPerPage={postsPerPage}
+        category={category}
         limited={limited}
-            currentPosts2={currentPosts2}
-            currentDisplayedItems={currentDisplayedItems}
-            currentDisplayedItems2={currentDisplayedItems2}
+        displayAllItems={displayAllItems}
+        displayItemsByCategory={displayItemsByCategory}
       />
       <nav>
       <StyledPagination>

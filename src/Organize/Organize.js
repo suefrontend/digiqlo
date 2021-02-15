@@ -6,20 +6,11 @@ import { StyledListItem, StyledImage, StyledTitle, StyledIcons } from '../styles
 import { StyledTable } from '../styles/StyledTable'
 import { StyledTypographyRight, StyledTypography } from '../styles/StyledTypography'
 
-const Organize = ({ clothes, numShoes, limit }) => {
+const Organize = ({ clothes, limit }) => {
   const uniqueCategory = Array.from(new Set(clothes.map(cloth => cloth.category)))
-  .map(category => {
-    return clothes.find(cloth => cloth.category === category)
-  })
-
-
-  // const test1 = clothes.map(cloth => console.log(cloth.category));
-
-
-  // const scoreSum = members.reduce((prev, current) => {
-  //   return prev + current.score;
-  // }, 0);
-  // console.log(scoreSum);
+    .map(category => {
+      return clothes.find(cloth => cloth.category === category)
+    })
 
   const total2 = Object.values(limit).reduce(function (accumulator, currentValue) { return accumulator + currentValue }, 0)
 
@@ -29,9 +20,9 @@ const Organize = ({ clothes, numShoes, limit }) => {
 
   let grouped = clothes.reduce((result, user) => {
 
-    (result[user.category] || (result[user.category] = [])).push(user);
-    return result;
-}, {});
+      (result[user.category] || (result[user.category] = [])).push(user);
+      return result;
+  }, {});
 
   const testtest = uniqueCategory.map(el => el.category)
 
@@ -69,8 +60,6 @@ const Organize = ({ clothes, numShoes, limit }) => {
         </tr>
       )}
       </StyledTable>
-      {/* <StyledTypographyRight>Last Update 07/31/2020</StyledTypographyRight> */}
-
 
   </div>
   )

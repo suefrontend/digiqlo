@@ -1,36 +1,44 @@
 import styled from 'styled-components'
-import tw from 'twin.macro'
 
-export const StyledCard = styled.div`
-
-${tw`flex justify-between flex-col bg-white shadow`}
-
-  & {
-      div {
-        ${tw`flex items-center h-full`}
-
-        a{
-          ${tw`h-full block`}
-
-          img {
-            ${tw`w-full h-full object-cover`}
-          }
-        }
-      }
-
-
-    p {
-      ${tw`px-4`}
-
-      a{
-        ${tw`text-current no-underline text-base`}
-      }
-    }
-
-  }
-
+export const CardContainer = styled.div`
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 1rem;
 `;
 
-export const StyledCardList = styled.div`
-  ${tw`grid grid-cols-5 gap-4`}
+export const Card = styled.div`
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  background-color: #fff;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+`;
+
+export const Image = styled.div`
+  display: flex;
+  align-items: center;
+  height: 100%;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  a {
+    display: block;
+    height: 100%;
+  }
+`;
+
+export const Title = styled.p`
+  padding-left: 1rem;
+  padding-right: 1rem;
+
+  a {
+    color: currentColor;
+    text-decoration: none;
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
 `;

@@ -1,16 +1,18 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
-import { StyledCard } from '../styles/Card';
+import { Card, Image, Title } from '../styles/Card';
 
 const CardItem = ({ cloth }) => {
 
   return (
-    <StyledCard key={cloth.id}>
-      <div>
+    <Card key={cloth.id}>
+      <Image>
         <Link to={`/closet/${cloth.id}`}><img src={cloth.image} alt={cloth.label} /></Link>
-      </div>
-  <p><Link to={`/closet/${cloth.id}`}>{cloth.label} [{cloth.category}]</Link></p>
-    </StyledCard>
+      </Image>
+      <Title>
+        <Link to={`/closet/${cloth.id}`}>{cloth.label} [{cloth.category}]</Link>
+      </Title>
+    </Card>
   )
 }
 

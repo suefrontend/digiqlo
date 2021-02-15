@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { StyledNav, StyledUl, StyledLi, StyledLink, StyledNavWrapper } from '../styles/StyledNavItem';
 import { StyledHeader, StyledHeaderLink } from '../styles/StyledHeader';
-import { StyledButton } from '../styles/StyledButton';
+import { Button } from '../styles/Button';
 
 const NavItem = () => (
 	<StyledNav>
@@ -10,17 +10,17 @@ const NavItem = () => (
 			<StyledHeaderLink>DIGIQLO</StyledHeaderLink>
 		</StyledHeader>
 		<StyledNavWrapper>
-			<Link to="/additem">
-				<StyledButton>
+			<Link to="/digiqlo/additem">
+				<Button>
 					<svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd"></path></svg>
 				Add Item
-			</StyledButton>
+			</Button>
 			</Link>
 		</StyledNavWrapper>
 		<StyledUl>
 			<StyledLi>
 				<StyledNavWrapper>
-					<Link to="/">
+					<Link to="/digiqlo">
 						<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
 							<path class="cls-1" d="M122.49081,90.475A388.16482,388.16482,0,0,1,72.54434,56.54108H66.86067v-6.8507a11.47338,11.47338,0,1,0-14.33244-11.112,2.86065,2.86065,0,0,0,5.7213,0,5.7511,5.7511,0,0,1,6.12265-5.739,5.75169,5.75169,0,0,1,.66457,11.397,4.72654,4.72654,0,0,0-3.89739,4.64328v7.66146H55.45566A388.16483,388.16483,0,0,1,5.50919,90.475a7.44393,7.44393,0,0,0-2.62545,10.41912L52.09594,72.646a23.91217,23.91217,0,0,1,23.8081,0l49.21222,28.24813A7.44393,7.44393,0,0,0,122.49081,90.475Z" /></svg>
 						<span>Closet</span>
@@ -29,7 +29,7 @@ const NavItem = () => (
 			</StyledLi>
 			<StyledLi>
 				<StyledNavWrapper>
-					<Link to="/reports">
+					<Link to="/digiqlo/reports">
 						<svg viewBox="0 0 20 20" fill="currentColor" class="chart-bar w-6 h-6"><path d="M2 11a1 1 0 011-1h2a1 1 0 011 1v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5zM8 7a1 1 0 011-1h2a1 1 0 011 1v9a1 1 0 01-1 1H9a1 1 0 01-1-1V7zM14 4a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1h-2a1 1 0 01-1-1V4z"></path></svg>
 						<span>Reports</span>
 					</Link>
@@ -37,7 +37,7 @@ const NavItem = () => (
 			</StyledLi>
 			<StyledLi>
 				<StyledNavWrapper>
-					<Link to="/organize">
+					<Link to="/digiqlo/organize">
 						<svg id="_x32_" viewBox="0 0 512 512" >
 							<g>
 								<path class="st0" d="M332.571,140.81l-16.665,16.648c-41.547-24.17-95.688-18.468-131.288,17.116l153.521,153.52
@@ -58,7 +58,7 @@ const NavItem = () => (
 			</StyledLi>
 			<StyledLi>
 				<StyledNavWrapper>
-					<Link to="/wishlist">
+					<Link to="/digiqlo/wishlist">
 						<svg viewBox="0 0 20 20" fill="currentColor" class="heart w-6 h-6"><path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"></path></svg>
 						<span>Wishlist</span>
 					</Link>
