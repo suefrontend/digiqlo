@@ -1,15 +1,18 @@
 import React from 'react';
-import { StyledFlexContainer } from './styles/Container';
+import { StyledFlexLayout } from './styles/Layout';
 import { StyledMain } from './styles/Main';
 import { StyledNavigation } from './styles/Navigation';
 import './App.css';
+import Closet from './pages/Closet';
 
 const App = () => {
 	return (
-    <StyledFlexContainer>
+    <StyledFlexLayout>
       <StyledNavigation>Sidebar</StyledNavigation>
-      <StyledMain>Main Contents</StyledMain>
-    </StyledFlexContainer>
+      <StyledMain>
+        <Closet />
+      </StyledMain>
+    </StyledFlexLayout>
   )
 }
 
