@@ -1,14 +1,14 @@
 import React from 'react';
 import { StyledFlexLayout } from './styles/Layout';
 import { StyledMain } from './styles/Main';
-import { StyledNavigation } from './styles/Navigation';
 import './App.css';
 import Closet from './pages/Closet';
+import Navigation from './components/Navigation';
 
 const App = () => {
 	return (
     <StyledFlexLayout>
-      <StyledNavigation>Sidebar</StyledNavigation>
+      <Navigation />
       <StyledMain>
         <Closet />
       </StyledMain>
