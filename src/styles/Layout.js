@@ -1,11 +1,19 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const StyledFlexLayout = styled.div`
 
   display: flex;
-  height: 100%;
+  min-height: 100vh;
 
   @media only screen and (max-width:1023px) {
+    flex-direction: column;
+  }
+
+`;
+export const StyledFlexContainer = styled.div`
+  display: flex;
+
+  @media only screen and (max-width: 639px) {
     flex-direction: column;
   }
 

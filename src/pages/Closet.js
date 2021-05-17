@@ -1,17 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import { StyledH3 } from '../styles/Typography';
 import CardList from '../components/CardList';
+import firebase from '../firebase/firestore'
 
 const Closet = () => {
 
-  const [data, setData] = useState([]);
-  const slicedData = data.slice(0, 10);
+  const [clothes, setClothes] = useState([]);
 
   useEffect(() => {
+    const db = firebase.firestore();
+
     const fetchData = async () => {
-      const response = await fetch('http://jsonplaceholder.typicode.com/photos');
-      const data = await response.json();
-      setData(data);
+
+      const closetData = await db.collection('closet').orderBy("createdAt", "desc").get();
+      setClothes(closetData.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+
     }
 
     fetchData();
@@ -20,7 +23,7 @@ const Closet = () => {
   return (
     <>
       <StyledH3>Closet</StyledH3>
-      <CardList data={slicedData} />
+      <CardList data={clothes} />
     </>
   )
 }

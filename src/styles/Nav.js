@@ -3,10 +3,7 @@ import styled from 'styled-components';
 
 export const StyledNavbar= styled.div`
 
-  //width: 180px;
-  //padding: 30px 40px;
   box-shadow: 0px 8px 10px rgba(0,0,0,0.1);
-  position: sticky;
 
   p {
     margin: 0;
@@ -94,16 +91,16 @@ export const StyledNavigation= styled.div`
     transition: .5s;
     background: #fff;
     width: 100%;
-    padding: 0 30px 30px;
+    padding: 0 30px 0;
     box-sizing: border-box;
     opacity: 0;
 
-    a {
+    .nav__item a {
       justify-content: center;
       font-weight: bold;
       font-size: 120%;
     }
-    a:hover {
+    .nav__item a:hover {
       opacity: 0.7;
       background: #fff;
     }
@@ -111,7 +108,7 @@ export const StyledNavigation= styled.div`
       display: none;
     }
     li {
-      margin: 0 0 30px 0;
+      margin: 0;
     }
   }
 `;

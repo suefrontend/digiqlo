@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { ReactComponent as ShirtIcon } from '../images/shirt.svg';
 import { ReactComponent as SweeperIcon } from '../images/sweeper.svg';
 import { ReactComponent as HeartIcon } from '../images/heart.svg';
@@ -6,30 +7,30 @@ import { ReactComponent as ChartIcon } from '../images/chart.svg';
 import { ReactComponent as HamburgerIcon } from '../images/hamburger-menu.svg';
 import { StyledHeaderContainer } from '../styles/Layout';
 import { StyledNavbar, StyledNavigation } from '../styles/Nav';
-import { StyledBtn } from './Button';
+import { StyledBtn } from '../styles/Button';
 import logo from '../images/logo.png';
 
 const Navigation = () => {
   return (
     <StyledNavbar>
       <StyledHeaderContainer>
-        <p className="logo"><a href="#"><img src={logo} alt="logo" /></a></p>
+        <p className="logo"><Link to="/"><img src={logo} alt="logo" /></Link></p>
 
-        <label id="menubtn" for="nav-input"><HamburgerIcon className="hambuger__icon" /></label>
+        <label id="menubtn" htmlFor="nav-input"><HamburgerIcon className="hambuger__icon" /></label>
       </StyledHeaderContainer>
 
-        <input id="nav-input" type="checkbox" class="nav-hidden" />
+        <input id="nav-input" type="checkbox" className="nav-hidden" />
         <StyledNavigation>
           <nav className="nav">
               <ul className="nav__list">
-                  <li className="nav__item"><a href="#"><ShirtIcon className="nav__icon" />Closet</a></li>
-                  <li className="nav__item"><a href="#"><ChartIcon className="nav__icon" />Reports</a></li>
-                  <li className="nav__item"><a href="#"><SweeperIcon className="nav__icon"/>Organize</a></li>
-                  <li className="nav__item"><a href="#"><HeartIcon className="nav__icon"/>Wishlist</a></li>
+                  <li className="nav__item"><Link to="/closet"><ShirtIcon className="nav__icon" />Closet</Link></li>
+                  <li className="nav__item"><Link to="/reports"><ChartIcon className="nav__icon" />Reports</Link></li>
+                  <li className="nav__item"><Link to="/organize"><SweeperIcon className="nav__icon"/>Organize</Link></li>
+                  <li className="nav__item"><Link to="/wishlist"><HeartIcon className="nav__icon"/>Wishlist</Link></li>
               </ul>
           </nav>
 
-          <StyledBtn className="btn"><a href="#">Add Item</a></StyledBtn>
+          <StyledBtn className="btn primary"><Link to="/additem">Add Item</Link></StyledBtn>
         </StyledNavigation>
 
       </StyledNavbar>

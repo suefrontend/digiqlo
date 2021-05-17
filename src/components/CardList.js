@@ -6,7 +6,7 @@ const CardList = ({ data }) => {
 
   const renderedList = data.map(item => {
     return (
-      <CardItem item={item}  key={item.title} />
+      <CardItem item={item}  key={item.id} />
     )
   });
 
